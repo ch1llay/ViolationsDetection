@@ -3,7 +3,7 @@ using System.Reflection;
 using AutoMapper.Internal;
 using FluentMigrator.Builders.Create.Table;
 
-namespace DataAccess.MIgrationsHelpers;
+namespace DataAccess.MigrationsHelpers;
 
 internal interface ICreateTableCommon : ICreateTableWithColumnOrSchemaOrDescriptionSyntax, ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax { }
 

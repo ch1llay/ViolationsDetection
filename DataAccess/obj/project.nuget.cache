@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "zP03uCERa45UY7jEwNvC1UfLrLu4gqP+AFsX+dKbxsWXDdiELhtFaGcdaJD2CSPqSXpxiHYHAPYk2KvhaUtKrw==",
-  "success": false,
+  "dgSpecHash": "/6GMTNeMMxy4TX7nkwbBDFCztGvtvudG0X/ptrWvjQABzQQRpX2ycQRR2ABBy8t5Tg8+Xs+9bwBI2iTAraFbuw==",
+  "success": true,
   "projectFilePath": "D:\\Projects\\SomeProjects\\Helpers\\ViolationsDetection\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\smartway.today\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
@@ -86,15 +86,6 @@
       "level": "Warning",
       "warningLevel": 1,
       "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://192.168.0.8:5555/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
-    },
-    {
-      "code": "NU1108",
-      "level": "Error",
-      "message": "Cycle detected. \r\n  DataAccess -> DataAccess.",
-      "libraryId": "DataAccess",
-      "targetGraphs": [
-        "net8.0"
-      ]
     }
   ]
 }

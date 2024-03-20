@@ -1,4 +1,4 @@
-﻿namespace DataAccess.MIgrationsHelpers;
+﻿namespace DataAccess.MigrationsHelpers;
 
 public class ForeignKeyAttribute : ColumnKeyAttribute
 {

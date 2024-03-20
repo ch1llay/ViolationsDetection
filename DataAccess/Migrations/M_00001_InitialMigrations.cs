@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Common.Extensions;
-using DataAccess.MIgrationsHelpers;
+using DataAccess.MigrationsHelpers;
 using FluentMigrator;
 using FluentMigrator.Expressions;
 
