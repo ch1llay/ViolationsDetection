@@ -1,9 +1,9 @@
 ﻿using Common.Enums;
-using DataAccess.MigrationsHelpers;
+using DataAccess.MIgrationsHelpers;
 
-namespace DataAccess.Entity.Violations;
+namespace Services.Models.Violations;
 
-public class DbViolation
+public class Violation
 {
     [ColumnKey] public Guid Id { get; set; }
     public Guid UserId { get; set; }

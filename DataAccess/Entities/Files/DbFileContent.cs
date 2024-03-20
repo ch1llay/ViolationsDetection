@@ -1,6 +1,6 @@
-﻿using DataAccess.MigrationsHelpers;
+﻿using DataAccess.MIgrationsHelpers;
 
-namespace DataAccess.Entity.Files;
+namespace DataAccess.Entities.Files;
 
 public class DbFileContent
 {

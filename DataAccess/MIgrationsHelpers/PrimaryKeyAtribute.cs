@@ -1,3 +1,3 @@
-﻿namespace DataAccess.MigrationsHelpers;
+﻿namespace DataAccess.MIgrationsHelpers;
 
 public class PrimaryKeyAttribute : ColumnKeyAttribute { }

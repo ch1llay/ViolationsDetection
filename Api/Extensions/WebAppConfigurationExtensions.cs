@@ -2,12 +2,8 @@
 using DataAccess;
 using DataAccess.DataContexts;
 using DataAccess.DataContexts.Interfaces;
-using DataAccess.Repositories;
-using DataAccess.Repositories.Interfaces;
 using FluentMigrator.Runner;
 using Microsoft.OpenApi.Models;
-using Services;
-using Services.Interfaces;
 
 namespace Api.Extensions;
 

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DataAccess.Entity.Files;
+namespace Services.Models.Files;
 
-public class DbFileLink
+public class FileLink
 {
     [Key] public Guid Id { get; set; }
     public Guid FileInfoId { get; set; }

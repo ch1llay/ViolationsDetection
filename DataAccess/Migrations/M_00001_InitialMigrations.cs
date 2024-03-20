@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Common.Extensions;
-using DataAccess.MigrationsHelpers;
+using DataAccess.MIgrationsHelpers;
 using FluentMigrator;
 using FluentMigrator.Expressions;
 
@@ -11,7 +11,7 @@ public class M_00001_InitialMigrations : Migration
 {
     public override void Up()
     {
-        var name = nameof(DataAccess.Entity);
+        var name = nameof(DataAccess.Entities);
         var models = Assembly.GetExecutingAssembly()
             .GetTypesInNamespace("DataAccess.Entity");
         var sortingModels = models
@@ -26,7 +26,7 @@ public class M_00001_InitialMigrations : Migration
 
     public override void Down()
     {
-        var name = nameof(DataAccess.Entity);
+        var name = nameof(DataAccess.Entities);
         var models = Assembly.GetExecutingAssembly()
             .GetTypesInNamespace("DataAccess.Entity");
         var sortingDescendingModels = models
