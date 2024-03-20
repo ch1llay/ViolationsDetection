@@ -13,7 +13,7 @@ public class M_00001_InitialMigrations : Migration
     {
         var name = nameof(DataAccess.Entities);
         var models = Assembly.GetExecutingAssembly()
-            .GetTypesInNamespace("DataAccess.Entity");
+            .GetTypesInNamespace("DataAccess.Entities");
         var sortingModels = models
             .OrderBy(t => Attribute.GetCustomAttributes(t)
                 .OfType<TableOrderAttribute>().FirstOrDefault()?.Order).ToList();
@@ -28,7 +28,7 @@ public class M_00001_InitialMigrations : Migration
     {
         var name = nameof(DataAccess.Entities);
         var models = Assembly.GetExecutingAssembly()
-            .GetTypesInNamespace("DataAccess.Entity");
+            .GetTypesInNamespace("DataAccess.Entities");
         var sortingDescendingModels = models
             .OrderByDescending(t => Attribute.GetCustomAttributes(t)
                 .OfType<TableOrderAttribute>().FirstOrDefault()?.Order).ToList();
