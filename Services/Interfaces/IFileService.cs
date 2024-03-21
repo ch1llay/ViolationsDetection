@@ -1,4 +1,4 @@
-﻿using Services.Models.Files;
+﻿using Services.Models;
 
 namespace Services.Interfaces;
 

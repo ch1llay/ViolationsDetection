@@ -1,4 +1,4 @@
-﻿using Services.Models.Users;
+﻿using Services.Models;
 
 namespace Api.Contracts;
 

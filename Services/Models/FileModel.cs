@@ -1,4 +1,4 @@
-﻿namespace Services.Models.Files;
+﻿namespace Services.Models;
 
 public class FileModel
 {
@@ -7,5 +7,5 @@ public class FileModel
     public Guid? FileContainerId { get; set; }
     public string Filename { get; set; }
     public DateTime CreatedDate { get; set; }
-    public byte[] Content { get; set; }
+    public FileContent Content { get; set; }
 }

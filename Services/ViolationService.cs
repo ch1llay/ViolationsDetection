@@ -2,9 +2,9 @@
 using Common.Extensions;
 using DataAccess.Entities;
 using DataAccess.Repositories;
+using DataAccess.Repositories.Interfaces;
 using Services.Interfaces;
-using Services.Models.Files;
-using Services.Models.Violations;
+using Services.Models;
 
 namespace Services;
 

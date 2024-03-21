@@ -4,7 +4,6 @@ using DataAccess.Entities;
 using DataAccess.Repositories.Interfaces;
 using Services.Interfaces;
 using Services.Models;
-using Services.Models.Users;
 
 namespace Services;
 

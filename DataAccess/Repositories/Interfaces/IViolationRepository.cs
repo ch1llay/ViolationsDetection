@@ -1,7 +1,6 @@
 ﻿using DataAccess.Entities;
-using DataAccess.Repositories.Interfaces;
 
-namespace DataAccess.Repositories;
+namespace DataAccess.Repositories.Interfaces;
 
 public interface IViolationRepository : IRepository<DbViolation>
 {

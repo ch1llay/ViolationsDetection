@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Api.Auth;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 

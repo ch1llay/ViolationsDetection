@@ -1,6 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 
-namespace Api;
+namespace Api.Auth;
 
 public class JWTParser
 {

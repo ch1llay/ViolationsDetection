@@ -1,4 +1,4 @@
-﻿using Services.Models.Violations;
+﻿using Services.Models;
 
 namespace Services.Interfaces;
 

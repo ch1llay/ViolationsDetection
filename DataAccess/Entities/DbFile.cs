@@ -14,5 +14,4 @@ public class DbFile
 
     public string Filename { get; set; }
     public DateTime CreatedDate { get; set; }
-    public byte[] Content { get; set; }
 }

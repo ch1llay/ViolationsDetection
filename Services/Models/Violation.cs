@@ -1,8 +1,7 @@
 ﻿using Common.Enums;
 using DataAccess.MIgrationsHelpers;
-using Services.Models.Files;
 
-namespace Services.Models.Violations;
+namespace Services.Models;
 
 public class Violation
 {

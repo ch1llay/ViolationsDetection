@@ -1,5 +1,6 @@
 ﻿using DataAccess.DataContexts.Interfaces;
 using DataAccess.Entities;
+using DataAccess.Repositories.Interfaces;
 using DataAccess.Sql.Violations;
 
 namespace DataAccess.Repositories;

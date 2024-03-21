@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess.Entities;
-using Services.Models.Files;
-using Services.Models.Users;
-using Services.Models.Violations;
+using Services.Models;
 
 namespace Api;
 

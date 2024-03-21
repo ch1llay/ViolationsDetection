@@ -1,6 +1,4 @@
-﻿using DataAccess.MIgrationsHelpers;
-
-namespace Services.Models.Users;
+﻿namespace Services.Models;
 
 public class User
 {

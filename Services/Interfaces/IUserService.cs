@@ -1,5 +1,4 @@
 ﻿using Services.Models;
-using Services.Models.Users;
 
 namespace Services.Interfaces;
 

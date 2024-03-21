@@ -1,7 +1,7 @@
 ﻿using Api.Controllers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
-using Services.Models.Files;
+using Services.Models;
 
 namespace Api.Controllers;
 

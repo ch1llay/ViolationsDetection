@@ -1,4 +1,4 @@
-﻿namespace Services.Models.Files;
+﻿namespace Services.Models;
 
 public class FileContainer
 {
