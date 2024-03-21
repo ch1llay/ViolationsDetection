@@ -20,7 +20,6 @@ public class DapperContext : IDataContext
     public async Task<T> InsertAsync<T>(string script, object param)
     {
         script = PrepareInsertQuery(script);
-
         await using var db = _connectionMethod();
 
         return await db.QueryFirstOrDefaultAsync<T>(script, param);
@@ -29,10 +28,8 @@ public class DapperContext : IDataContext
     public async Task<IEnumerable<int>> InsertManyAsync<T>(string script, IEnumerable<T> objects)
     {
         script = PrepareInsertQuery(script);
-
         await using var db = _connectionMethod();
         using IDbTransaction transaction = await db.BeginTransactionAsync();
-
         var insertedObjectsIds = new List<int>();
 
         foreach (var item in objects)

@@ -1,22 +1,22 @@
 ﻿using DataAccess.DataContexts.Interfaces;
-using DataAccess.Entities.Users;
-using DataAccess.Repositories.Users.Interfaces;
+using DataAccess.Entities.Files;
+using DataAccess.Repositories.Files.Interfaces;
 using DataAccess.Sql.ActionDirections;
 
-namespace DataAccess.Repositories.Users;
+namespace DataAccess.Repositories.Files;
 
-public class FileRepository(IDataContext dataContext) : IUserRepository
+public class FileRepository(IDataContext dataContext) : IFileRepository
 {
-    public async Task<DbUser> Add(DbUser model)
+    public async Task<DbFileModel> Add(DbFileModel model)
     {
         model.Id = Guid.NewGuid();
 
-        return await dataContext.InsertAsync<DbUser>(ActionDirections.Insert, model);
+        return await dataContext.InsertAsync<DbFileModel>(ActionDirections.Insert, model);
     }
 
-    public async Task<DbUser> Update(DbUser model)
+    public async Task<DbFileModel> Update(DbFileModel model)
     {
-        return await dataContext.UpdateAsync<DbUser>(ActionDirections.Update, model);
+        return await dataContext.UpdateAsync<DbFileModel>(ActionDirections.Update, model);
     }
 
     public async Task<bool> Delete(Guid id)
@@ -24,14 +24,19 @@ public class FileRepository(IDataContext dataContext) : IUserRepository
         return await dataContext.DeleteAsync(ActionDirections.Delete, new {id});
     }
 
-    public async Task<IEnumerable<DbUser>> GetByIds(IEnumerable<Guid> ids)
+    public async Task<IEnumerable<DbFileModel>> GetByIds(IEnumerable<Guid> ids)
     {
-        return await dataContext.EnumerableOrEmptyAsync<DbUser>(ActionDirections.GetByIds, new {ids});
+        return await dataContext.EnumerableOrEmptyAsync<DbFileModel>(ActionDirections.GetByIds, new {ids});
     }
 
-    public async Task<IEnumerable<DbUser>> GetByUserId(List<Guid> userIds)
+
+    public async Task<IEnumerable<DbFileModel>> GetByUserIds(List<Guid> userIds)
     {
-        return await dataContext.EnumerableOrEmptyAsync<DbUser>(ActionDirections.GetAllByLifeSpheres, new {userIds});
+        return await dataContext.EnumerableOrEmptyAsync<DbFileModel>(ActionDirections.GetAllByLifeSpheres, new {userIds});
     }
-    
+
+    public async Task<IEnumerable<DbFileModel>> GetByContainerIds(List<Guid> containerIds)
+    {
+        return await dataContext.EnumerableOrEmptyAsync<DbFileModel>(ActionDirections.GetAllByLifeSpheres, new {containerIds});
+    }
 }

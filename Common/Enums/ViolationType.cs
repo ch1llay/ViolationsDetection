@@ -1,6 +1,3 @@
 ﻿namespace Common.Enums;
 
-public enum ViolationType
-{
-    
-}
+public enum ViolationType { }

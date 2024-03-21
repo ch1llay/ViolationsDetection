@@ -17,8 +17,7 @@ public class M_00001_InitialMigrations : Migration
         var sortingModels = models
             .OrderBy(t => Attribute.GetCustomAttributes(t)
                 .OfType<TableOrderAttribute>().FirstOrDefault()?.Order).ToList();
-
-        foreach (var model in sortingModels)
+foreach (var model in sortingModels)
         {
             Create.Table(model.Name).AddColumns(model);
         }
@@ -32,8 +31,7 @@ public class M_00001_InitialMigrations : Migration
         var sortingDescendingModels = models
             .OrderByDescending(t => Attribute.GetCustomAttributes(t)
                 .OfType<TableOrderAttribute>().FirstOrDefault()?.Order).ToList();
-
-        foreach (var model in sortingDescendingModels)
+foreach (var model in sortingDescendingModels)
         {
             Delete.Table(model.Name);
         }

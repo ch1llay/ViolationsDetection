@@ -33,5 +33,4 @@ public class ViolationRepository(IDataContext dataContext) : IViolationRepositor
     {
         return await dataContext.EnumerableOrEmptyAsync<DbViolation>(ActionDirections.GetAllByLifeSpheres, new {userIds});
     }
-    
 }

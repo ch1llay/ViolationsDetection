@@ -1,13 +1,13 @@
 ﻿using DataAccess.MIgrationsHelpers;
 
-namespace Services.Models.Files;
+namespace DataAccess.Entities.Files;
 
-public class FileInfo
+public class DbFileModel
 {
     [ColumnKey] public Guid Id { get; set; }
     public Guid UserId { get; set; }
-    [ForeignKey("","")] public Guid FileContainerId { get; set; }
+    [ForeignKey("", "")] public Guid FileContainerId { get; set; }
     public string Filename { get; set; }
     public DateTime CreatedDate { get; set; }
-    public FileContent FileContent { get; set; }
+    public byte[] Content { get; set; }
 }

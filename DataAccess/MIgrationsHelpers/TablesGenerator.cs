@@ -12,7 +12,6 @@ public static class TablesGenerator
     public static ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax? AddColumns(this ICreateTableWithColumnOrSchemaOrDescriptionSyntax table, Type type)
     {
         ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax? modifyTable = null;
-
         var properties = type.GetProperties();
 
         for (var i = 0; i < properties.Length; i++)
@@ -43,7 +42,7 @@ public static class TablesGenerator
         switch (columnKeyAttribute)
         {
             case PrimaryKeyAttribute:
-                res = (ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax)table.WithColumn(name).AsType(columnType).PrimaryKey();
+                res = (ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax) table.WithColumn(name).AsType(columnType).PrimaryKey();
 
                 break;
 
@@ -58,7 +57,7 @@ public static class TablesGenerator
                 break;
 
             default:
-                res = (ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax)table.WithColumn(name).AsType(columnType);
+                res = (ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax) table.WithColumn(name).AsType(columnType);
 
                 break;
         }
@@ -70,7 +69,7 @@ public static class TablesGenerator
 
         if (columnType.IsNullableType())
         {
-            res = (ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax)res.Nullable();
+            res = (ICreateTableColumnOptionOrForeignKeyCascadeOrWithColumnSyntax) res.Nullable();
         }
 
         return res;
@@ -84,47 +83,38 @@ public static class TablesGenerator
         {
             res = column.AsInt32();
         }
-
         else if (type == typeof(float))
         {
             res = column.AsFloat();
         }
-
         else if (type == typeof(double))
         {
             res = column.AsDouble();
         }
-
         else if (type == typeof(decimal))
         {
             res = column.AsDecimal();
         }
-
         else if (type == typeof(Guid))
         {
             res = column.AsGuid();
         }
-
         else if (type == typeof(string))
         {
             res = column.AsString();
         }
-
         else if (type == typeof(byte[]))
         {
             res = column.AsBinary();
         }
-
         else if (type == typeof(bool))
         {
             res = column.AsBoolean();
         }
-
         else if (type == typeof(DateTime))
         {
             res = column.AsDateTime();
         }
-
         else
         {
             res = column.AsString();

@@ -63,7 +63,6 @@ public static class WebAppConfigurationExtensions
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseMiddleware<GlobalExceptionMiddleware>();
-
         app.MapControllers();
 
         if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Local"))
@@ -83,7 +82,6 @@ public static class WebAppConfigurationExtensions
             .AddLogging();
 
         builder.Services.AddControllers().AddNewtonsoftJson();
-
         builder.AddAuthenticationWithOptions();
         builder.ConfigureService();
         builder.AddSwaggerOptions();
@@ -98,15 +96,9 @@ public static class WebAppConfigurationExtensions
         builder.Services.AddSingletonGroup();
     }
 
-    private static void AddTransientGroup(this IServiceCollection services)
-    {
-        
-    }
+    private static void AddTransientGroup(this IServiceCollection services) { }
 
-    private static void AddScopedGroup(this IServiceCollection services)
-    {
-       
-    }
+    private static void AddScopedGroup(this IServiceCollection services) { }
 
     private static void AddSingletonGroup(this IServiceCollection services)
     {

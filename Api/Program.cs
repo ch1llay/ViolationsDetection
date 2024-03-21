@@ -8,10 +8,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Configure();
-
         var app = builder.Build();
         app.ConfigureApp();
-
         app.Run();
     }
 }

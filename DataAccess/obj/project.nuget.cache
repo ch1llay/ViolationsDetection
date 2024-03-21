@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/6GMTNeMMxy4TX7nkwbBDFCztGvtvudG0X/ptrWvjQABzQQRpX2ycQRR2ABBy8t5Tg8+Xs+9bwBI2iTAraFbuw==",
+  "dgSpecHash": "aR/geifKN4Deaclut8+emFkLFbQmFoz48M/8slxcXma8mXxYkx4HNVHlliY2OVOCdmWf0xZj8OT/1hzxRFxLgw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\SomeProjects\\Helpers\\ViolationsDetection\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
@@ -80,12 +80,5 @@
     "C:\\Users\\smartway.today\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
     "C:\\Users\\smartway.today\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1803",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://192.168.0.8:5555/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
-    }
-  ]
+  "logs": []
 }
