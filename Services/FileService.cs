@@ -49,7 +49,14 @@ public class FileService(
 
     public async Task<List<FileModel>> GetByContainerId(Guid containerId)
     {
-        var res = (await fileRepository.GetByUserIds(new List<Guid> {containerId})).MapToList<FileModel>(mapper);
+        var res = (await fileRepository.GetByContainerIds(new List<Guid> {containerId})).MapToList<FileModel>(mapper);
+
+        return res;
+    }
+
+    public async Task<List<FileModel>> GetByContainersId(List<Guid> containerIds)
+    {
+        var res = (await fileRepository.GetByContainerIds(containerIds)).MapToList<FileModel>(mapper);
 
         return res;
     }

@@ -30,6 +30,7 @@ public class FileContainerService(
     public async Task<List<FileContainer>> GetByIds(IEnumerable<Guid> ids)
     {
         var res = (await fileContainerRepository.GetByIds(ids)).MapToList<FileContainer>(mapper);
+        await res.GetFiles(fileService);
 
         return res;
     }
@@ -37,6 +38,7 @@ public class FileContainerService(
     public async Task<FileContainer> GetById(Guid id)
     {
         var res = (await fileContainerRepository.GetByIds(new List<Guid> {id})).Map<FileContainer>(mapper);
+        await res.GetFiles(fileService);
 
         return res;
     }
@@ -44,8 +46,17 @@ public class FileContainerService(
     public async Task<FileContainer> GetByViolationId(Guid violationId)
     {
         var res = (await fileContainerRepository.GetByViolationIds(new List<Guid> {violationId})).Map<FileContainer>(mapper);
+        await res.GetFiles(fileService);
 
         return res;
+    }
+
+    public async Task<List<FileContainer>> GetByViolationIds(List<Guid> violationIds)
+    {
+        var res = (await fileContainerRepository.GetByViolationIds(violationIds)).MapToList<FileContainer>(mapper);
+        await res.GetFiles(fileService);
+
+        return res;    
     }
 }
 
@@ -58,5 +69,17 @@ public static class FileContainerExtensions
         fileContainer.Files = files;
 
         return fileContainer;
+    }
+    
+    public static async Task<List<FileContainer>> GetFiles(this List<FileContainer> fileContainers,
+        IFileService fileService)
+    {
+        var containerIds = fileContainers.Select(f => f.Id).ToList();
+        var files = await fileService.GetByContainersId(containerIds);
+        var filesGroupByContainerId = files.GroupBy(f => f.FileContainerId).ToDictionary(t => t.Key, t => t.ToList());
+        
+        fileContainers.ForEach(f=>f.Files = filesGroupByContainerId.GetValueOrDefault(f.Id) ?? new List<FileModel>());
+
+        return fileContainers;
     }
 }

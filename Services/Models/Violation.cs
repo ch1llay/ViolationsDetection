@@ -1,5 +1,6 @@
 ﻿using Common.Enums;
 using DataAccess.MIgrationsHelpers;
+using Services.Models.Files;
 
 namespace Services.Models.Violations;
 
@@ -13,4 +14,5 @@ public class Violation
     public DateTime CreatedDate { get; set; }
     public string Comment { get; set; }
     public ViolationStatus ViolationStatus { get; set; }
+    public FileContainer FileContainer { get; set; }
 }
