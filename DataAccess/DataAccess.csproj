@@ -20,4 +20,46 @@
         <ProjectReference Include="..\Common\Common.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <EmbeddedResource Update="Sql\Users\Users.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Users.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Sql\Violations\Violations.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Violations.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Sql\Files\Files.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Files.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Sql\FileContainers\FileContainers.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>FileContainers.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Sql\Users\Users.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Users.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Sql\Violations\Violations.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Violations.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Sql\Files\Files.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Files.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Sql\FileContainers\FileContainers.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>FileContainers.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

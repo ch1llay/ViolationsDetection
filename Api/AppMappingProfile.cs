@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using DataAccess.Entities.Files;
-using DataAccess.Entities.Users;
-using DataAccess.Entities.Violations;
+using DataAccess.Entities;
 using Services.Models.Files;
 using Services.Models.Users;
 using Services.Models.Violations;
