@@ -99,6 +99,10 @@ public static class TablesGenerator
         {
             res = column.AsGuid();
         }
+        else if (type == typeof(Guid?))
+        {
+            res = column.AsGuid().Nullable();
+        }
         else if (type == typeof(string))
         {
             res = column.AsString();

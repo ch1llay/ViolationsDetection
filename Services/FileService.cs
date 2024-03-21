@@ -13,12 +13,12 @@ public class FileService(
 {
     public async Task<FileModel> Add(FileModel model)
     {
-        return (await fileRepository.Add(model.Map<DbFileModel>(mapper))).Map<FileModel>(mapper);
+        return (await fileRepository.Add(model.Map<DbFile>(mapper))).Map<FileModel>(mapper);
     }
 
     public async Task<FileModel> Update(FileModel model)
     {
-        return (await fileRepository.Update(model.Map<DbFileModel>(mapper))).Map<FileModel>(mapper);
+        return (await fileRepository.Update(model.Map<DbFile>(mapper))).Map<FileModel>(mapper);
     }
 
     public async Task<bool> Delete(Guid id)

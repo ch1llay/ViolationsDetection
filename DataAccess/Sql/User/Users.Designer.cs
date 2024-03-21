@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Sql.Users {
+namespace DataAccess.Sql.User {
     using System;
     
     
@@ -38,7 +38,7 @@ namespace DataAccess.Sql.Users {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DataAccess.Sql.Users.Users", typeof(Users).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DataAccess.Sql.User.Users", typeof(Users).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,46 +60,34 @@ namespace DataAccess.Sql.Users {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to delete
-        ///from &quot;DbActionDirection&quot;
-        ///where &quot;Id&quot; = @id.
+        ///   Looks up a localized string similar to select *
+        ///from &quot;DbUser&quot;.
         /// </summary>
-        internal static string Delete {
+        internal static string GetAll {
             get {
-                return ResourceManager.GetString("Delete", resourceCulture);
+                return ResourceManager.GetString("GetAll", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to select *
-        ///from &quot;DbActionDirection&quot;
-        ///where &quot;Id&quot; = any (@ids).
+        ///from &quot;DbUser&quot;
+        ///where &quot;Login&quot; = @login.
         /// </summary>
-        internal static string GetByIds {
+        internal static string GetByLogin {
             get {
-                return ResourceManager.GetString("GetByIds", resourceCulture);
+                return ResourceManager.GetString("GetByLogin", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to insert into &quot;DbActionDirection&quot; (&quot;Id&quot;, &quot;LifeSphereId&quot;, &quot;Title&quot;, &quot;Description&quot;, &quot;CreatedDate&quot;)
-        ///values (@Id, @LifeSphereId, @Title, @Description, @CreatedDate)
-        ///returning &quot;Id&quot;, &quot;LifeSphereId&quot;, &quot;Title&quot;, &quot;Description&quot;, &quot;CreatedDate&quot;  .
+        ///   Looks up a localized string similar to insert into &quot;DbUser&quot; (&quot;Id&quot;, &quot;Login&quot;, &quot;PasswordHash&quot;, &quot;Email&quot;, &quot;Name&quot;, &quot;Birthday&quot;, &quot;Height&quot;, &quot;Weight&quot;)
+        ///values (@Id, @Login, @PasswordHash, @Email, @Name, @Birthday, @Height, @Weight)
+        ///returning &quot;Id&quot;, &quot;Login&quot;, &quot;PasswordHash&quot;, &quot;Email&quot;, &quot;Name&quot;, &quot;Birthday&quot;, &quot;Height&quot;, &quot;Weight&quot;.
         /// </summary>
         internal static string Insert {
             get {
                 return ResourceManager.GetString("Insert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to insert into &quot;DbTask&quot; (&quot;Id&quot;, &quot;Title&quot;, &quot;CreatedDate&quot;, &quot;StartExecutionDate&quot;, &quot;DeadlineDate&quot;)
-        ///values (@Id, @Title, @CreatedDate, @StartExecutionDate, @DeadlineDate)
-        ///returning &quot;Id&quot;, &quot;ProjectId&quot;, &quot;Title&quot;, &quot;CreatedDate&quot;, &quot;StartExecutionDate&quot;, &quot;DeadlineDate&quot;.
-        /// </summary>
-        internal static string Update {
-            get {
-                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
     }

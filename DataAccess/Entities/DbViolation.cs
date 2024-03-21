@@ -3,9 +3,10 @@ using DataAccess.MIgrationsHelpers;
 
 namespace DataAccess.Entities;
 
+[TableOrder(1)]
 public class DbViolation
 {
-    [ColumnKey] public Guid Id { get; set; }
+    [PrimaryKey] public Guid Id { get; set; }
 
     [ForeignKey(nameof(DbUser), nameof(DbUser.Id))]
     public Guid UserId { get; set; }

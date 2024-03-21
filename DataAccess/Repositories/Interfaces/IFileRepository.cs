@@ -2,8 +2,8 @@
 
 namespace DataAccess.Repositories.Interfaces;
 
-public interface IFileRepository : IRepository<DbFileModel>
+public interface IFileRepository : IRepository<DbFile>
 {
-    public Task<IEnumerable<DbFileModel>> GetByUserIds(List<Guid> userIds);
-    public Task<IEnumerable<DbFileModel>> GetByContainerIds(List<Guid> containerIds);
+    public Task<IEnumerable<DbFile>> GetByUserIds(List<Guid> userIds);
+    public Task<IEnumerable<DbFile>> GetByContainerIds(List<Guid> containerIds);
 }

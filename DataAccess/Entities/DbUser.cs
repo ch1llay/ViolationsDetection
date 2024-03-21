@@ -2,11 +2,12 @@
 
 namespace DataAccess.Entities;
 
+[TableOrder(0)]
 public class DbUser
 {
-    [ColumnKey] public Guid Id { get; set; }
+    [PrimaryKey] public Guid Id { get; set; }
 
-    [ForeignKey(nameof(DbFileModel), nameof(DbFileModel.Id))]
+    //[ForeignKey(nameof(DbFileModel), nameof(DbFileModel.Id))]
     public Guid? AvatarFileId { get; set; }
 
     public string Login { get; set; }

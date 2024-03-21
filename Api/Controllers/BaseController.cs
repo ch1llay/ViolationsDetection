@@ -4,5 +4,7 @@ namespace Api.Controllers;
 
 public class BaseController : Controller
 {
-    public Guid UserId { get; set; }
+    public string Token => HttpContext.Request.Headers["Authorization"].ToString();
+    public Guid UserId => Guid.Parse(JWTParser.GetParameter<string?>(Token, "UserId") ?? string.Empty);
+
 }

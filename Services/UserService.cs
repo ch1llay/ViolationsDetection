@@ -3,40 +3,42 @@ using Common.Extensions;
 using DataAccess.Entities;
 using DataAccess.Repositories.Interfaces;
 using Services.Interfaces;
+using Services.Models;
 using Services.Models.Users;
 
 namespace Services;
 
-public class UserService(
-    IMapper mapper,
-    IUserRepository userRepository) : IUserService
+public class UserService : IUserService
 {
-    public async Task<User> Add(User model)
+    private readonly IMapper _mapper;
+    private readonly IUserRepository _userRepository;
+
+    public UserService(IUserRepository userRepository, IMapper mapper)
     {
-        return (await userRepository.Add(model.Map<DbUser>(mapper))).Map<User>(mapper);
+        _userRepository = userRepository;
+        _mapper = mapper;
     }
 
-    public async Task<User> Update(User model)
+    public async Task<User?> GetByLogin(string login)
     {
-        return (await userRepository.Update(model.Map<DbUser>(mapper))).Map<User>(mapper);
+        return (await _userRepository.GetByLogin(login)).Map<User>(_mapper);
     }
 
-    public async Task<bool> Delete(Guid id)
+    public async Task<List<User>> GetAll()
     {
-        return await userRepository.Delete(id);
+        return (await _userRepository.GetAll()).MapToList<User>(_mapper);
     }
 
-    public async Task<List<User>> GetByIds(IEnumerable<Guid> ids)
+    public async Task<User> Add(User user)
     {
-        var res = (await userRepository.GetByIds(ids)).MapToList<User>(mapper);
-
-        return res;
+        user.Id = Guid.NewGuid();
+        user.PasswordHash = user.Password;
+        
+        return (await _userRepository.Add(user.Map<DbUser>(_mapper))).Map<User>(_mapper);
     }
 
     public async Task<User> GetById(Guid id)
     {
-        var res = (await userRepository.GetByIds(new List<Guid> {id})).Map<User>(mapper);
-
-        return res;
+        return (await _userRepository.GetByIds(new []{id})).Map<User>(_mapper);
     }
 }

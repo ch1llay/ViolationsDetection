@@ -1,10 +1,11 @@
 ﻿using Api.Controllers.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Services.Interfaces;
 using Services.Models.Files;
 
 namespace Api.Controllers;
 
-public class FileController : Controller, ICrudController<FileModel, Guid>
+public class FileController(IFileService fileService) : Controller, ICrudController<FileModel, Guid>
 {
     // GET
     public IActionResult Index()
@@ -12,14 +13,16 @@ public class FileController : Controller, ICrudController<FileModel, Guid>
         return Ok();
     }
 
-    public Task<ActionResult<FileModel>> Add(FileModel model)
+    [HttpPost]
+    public async Task<ActionResult<FileModel>> Add(FileModel model)
     {
-        throw new NotImplementedException();
+        return Ok(await fileService.Add(model));
     }
 
-    public Task<ActionResult<FileModel>> GetById(Guid id)
+    [HttpGet("by-id/{id}")]
+    public async Task<ActionResult<FileModel>> GetById(Guid id)
     {
-        throw new NotImplementedException();
+        return Ok(await fileService.GetById(id));
     }
 
     public Task<ActionResult<FileModel>> Update(FileModel model)

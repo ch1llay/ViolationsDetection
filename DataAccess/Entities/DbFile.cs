@@ -2,9 +2,11 @@
 
 namespace DataAccess.Entities;
 
-public class DbFileModel
+[TableOrder(3)]
+public class DbFile
 {
-    [ColumnKey] public Guid Id { get; set; }
+    [PrimaryKey]public Guid Id { get; set; }
+    
     public Guid UserId { get; set; }
 
     [ForeignKey(nameof(DbFileContainer), nameof(DbFileContainer.Id))]

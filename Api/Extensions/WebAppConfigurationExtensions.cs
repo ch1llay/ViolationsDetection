@@ -1,9 +1,16 @@
-﻿using Api.Middlewares;
+﻿using Api.Auth;
+using Api.Middlewares;
 using DataAccess;
 using DataAccess.DataContexts;
 using DataAccess.DataContexts.Interfaces;
+using DataAccess.Repositories;
+using DataAccess.Repositories.Interfaces;
 using FluentMigrator.Runner;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Services;
+using Services.Interfaces;
 
 namespace Api.Extensions;
 
@@ -27,6 +34,28 @@ public static class AuthAppExtensions
     public static void AddAuthenticationWithOptions(this WebApplicationBuilder builder)
     {
         builder.Services.AddAuthorization();
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    // указывает, будет ли валидироваться издатель при валидации токена
+                    ValidateIssuer = true,
+                    // строка, представляющая издателя
+                    ValidIssuer = AuthOptions.ISSUER,
+                    // будет ли валидироваться потребитель токена
+                    ValidateAudience = true,
+                    // установка потребителя токена
+                    ValidAudience = AuthOptions.AUDIENCE,
+                    // будет ли валидироваться время существования
+                    ValidateLifetime = true,
+                    // установка ключа безопасности
+                    IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                    // валидация ключа безопасности
+                    ValidateIssuerSigningKey = true
+                };
+            });
     }
 }
 
@@ -96,9 +125,21 @@ public static class WebAppConfigurationExtensions
         builder.Services.AddSingletonGroup();
     }
 
-    private static void AddTransientGroup(this IServiceCollection services) { }
+    private static void AddTransientGroup(this IServiceCollection services)
+    {
+        services.AddTransient<IFileService, FileService>();
+        services.AddTransient<IFileContainerService, FileContainerService>();
+        services.AddTransient<IUserService, UserService>();
+        services.AddTransient<IViolationService, ViolationService>();
+    }
 
-    private static void AddScopedGroup(this IServiceCollection services) { }
+    private static void AddScopedGroup(this IServiceCollection services)
+    {
+        services.AddScoped<IFileRepository, FileRepository>();
+        services.AddScoped<IFileContainerRepository, FileContainerRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IViolationRepository, ViolationRepository>();
+    }
 
     private static void AddSingletonGroup(this IServiceCollection services)
     {
