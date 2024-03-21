@@ -28,9 +28,5 @@ public class UserRepository(IDataContext dataContext) : IUserRepository
     {
         return await dataContext.EnumerableOrEmptyAsync<DbUser>(Users.GetByIds, new {ids});
     }
-
-    public async Task<IEnumerable<DbUser>> GetByUserIds(List<Guid> userIds)
-    {
-        return await dataContext.EnumerableOrEmptyAsync<DbUser>(Users.GetAllByLifeSpheres, new {userIds});
-    }
+    
 }

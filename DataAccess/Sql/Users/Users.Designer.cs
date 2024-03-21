@@ -73,17 +73,6 @@ namespace DataAccess.Sql.Users {
         /// <summary>
         ///   Looks up a localized string similar to select *
         ///from &quot;DbActionDirection&quot;
-        ///where &quot;LifeSphereId&quot; = any (@lifeSphereIds).
-        /// </summary>
-        internal static string GetAllByLifeSpheres {
-            get {
-                return ResourceManager.GetString("GetAllByLifeSpheres", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to select *
-        ///from &quot;DbActionDirection&quot;
         ///where &quot;Id&quot; = any (@ids).
         /// </summary>
         internal static string GetByIds {
