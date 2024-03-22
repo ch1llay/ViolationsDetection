@@ -6,7 +6,7 @@ using Services.Interfaces;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("users")]
 public class UserController : Controller
 {
     private readonly IMapper _mapper;
