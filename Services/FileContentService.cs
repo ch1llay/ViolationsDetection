@@ -44,7 +44,8 @@ public class FileContentService(
     {
         var res = (await fileContentRepository.GetByFileIds(new List<Guid> {fileId})).Map<FileContent>(mapper);
 
-        return res;    }
+        return res;
+    }
 
     public Task<List<FileContent>> GetByFileIds(Guid fileId)
     {

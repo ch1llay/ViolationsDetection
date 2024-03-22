@@ -32,12 +32,12 @@ public class UserService : IUserService
     {
         user.Id = Guid.NewGuid();
         user.PasswordHash = user.Password;
-        
+
         return (await _userRepository.Add(user.Map<DbUser>(_mapper))).Map<User>(_mapper);
     }
 
-    public async Task<User> GetById(Guid id)
+    public async Task<User?> GetById(Guid id)
     {
-        return (await _userRepository.GetByIds(new []{id})).Map<User>(_mapper);
+        return (await _userRepository.GetByIds(new[] {id})).FirstOrDefault()?.Map<User>(_mapper);
     }
 }

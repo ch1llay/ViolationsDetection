@@ -7,5 +7,5 @@ public interface IUserService
     public Task<User?> GetByLogin(string login);
     public Task<List<User>> GetAll();
     public Task<User> Add(User user);
-    public Task<User> GetById(Guid id);
+    public Task<User?> GetById(Guid id);
 }

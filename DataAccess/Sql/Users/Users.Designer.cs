@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Sql.User {
+namespace DataAccess.Sql.Users {
     using System;
     
     
@@ -38,7 +38,7 @@ namespace DataAccess.Sql.User {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DataAccess.Sql.User.Users", typeof(Users).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DataAccess.Sql.Users.Users", typeof(Users).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,23 @@ namespace DataAccess.Sql.User {
         
         /// <summary>
         ///   Looks up a localized string similar to select *
-        ///from &quot;DbUser&quot;.
+        ///from &quot;DbUser&quot;
+        ///where &quot;Id&quot; in (@ids).
         /// </summary>
         internal static string GetAll {
             get {
                 return ResourceManager.GetString("GetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select *
+        ///from &quot;DbUser&quot;
+        ///where &quot;Id&quot; in (@ids).
+        /// </summary>
+        internal static string GetByIds {
+            get {
+                return ResourceManager.GetString("GetByIds", resourceCulture);
             }
         }
         
@@ -81,9 +93,9 @@ namespace DataAccess.Sql.User {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to insert into &quot;DbUser&quot; (&quot;Id&quot;, &quot;Login&quot;, &quot;PasswordHash&quot;, &quot;Email&quot;, &quot;Name&quot;, &quot;Birthday&quot;, &quot;Height&quot;, &quot;Weight&quot;)
-        ///values (@Id, @Login, @PasswordHash, @Email, @Name, @Birthday, @Height, @Weight)
-        ///returning &quot;Id&quot;, &quot;Login&quot;, &quot;PasswordHash&quot;, &quot;Email&quot;, &quot;Name&quot;, &quot;Birthday&quot;, &quot;Height&quot;, &quot;Weight&quot;.
+        ///   Looks up a localized string similar to insert into &quot;DbUser&quot; (&quot;Id&quot;, &quot;AvatarFileId&quot;, &quot;Login&quot;, &quot;PasswordHash&quot;, &quot;FirstName&quot;, &quot;LastName&quot;, &quot;Patronymic&quot;, &quot;PhoneNumber&quot;, &quot;Email&quot;)
+        ///values (@Id, @AvatarFileId, @Login, @PasswordHash, @FirstName, @LastName, @Patronymic, @PhoneNumber, @Email)
+        ///returning &quot;Id&quot;, &quot;AvatarFileId&quot;, &quot;Login&quot;, &quot;PasswordHash&quot;, &quot;FirstName&quot;, &quot;LastName&quot;, &quot;Patronymic&quot;, &quot;PhoneNumber&quot;, &quot;Email&quot;.
         /// </summary>
         internal static string Insert {
             get {

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Common.Extensions;
 using DataAccess.Entities;
-using DataAccess.Repositories;
 using DataAccess.Repositories.Interfaces;
 using Services.Interfaces;
 using Services.Models;
@@ -60,15 +59,15 @@ public static class ViolationExtensions
 
         return violation;
     }
-    
+
     public static async Task<List<Violation>> GetFiles(this List<Violation> violations,
         IFileContainerService fileContainerService)
     {
         var violationIds = violations.Select(f => f.Id).ToList();
         var fileContainers = await fileContainerService.GetByViolationIds(violationIds);
         var fileContainersByViolationId = fileContainers.GroupBy(f => f.ViolationId).ToDictionary(t => t.Key, t => t.FirstOrDefault());
-        
-        violations.ForEach(v=>v.Files = fileContainersByViolationId.GetValueOrDefault(v.Id)?.Files ?? new List<FileModel>());
+
+        violations.ForEach(v => v.Files = fileContainersByViolationId.GetValueOrDefault(v.Id)?.Files ?? new List<FileModel>());
 
         return violations;
     }

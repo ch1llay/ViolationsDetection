@@ -54,7 +54,7 @@ public class FileService(
 
         return res;
     }
-    
+
     public async Task<FileModel> GetByIdWithContent(Guid id)
     {
         var file = (await fileRepository.GetByIds(new List<Guid> {id})).MapToList<FileModel>(mapper).FirstOrDefault();

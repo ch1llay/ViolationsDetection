@@ -1,7 +1,7 @@
 ﻿using DataAccess.DataContexts.Interfaces;
 using DataAccess.Entities;
 using DataAccess.Repositories.Interfaces;
-using DataAccess.Sql.User;
+using DataAccess.Sql.Users;
 
 namespace DataAccess.Repositories;
 
@@ -36,9 +36,9 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<DbUser>> GetByIds(IEnumerable<Guid> ids)
     {
-        return await _dataContext.EnumerableOrEmptyAsync<DbUser>("", new {ids });
+        return await _dataContext.EnumerableOrEmptyAsync<DbUser>(Users.GetByIds, new {ids});
     }
-    
+
 
     public async Task<DbUser?> GetByLogin(string login)
     {

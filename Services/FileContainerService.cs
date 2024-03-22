@@ -56,7 +56,7 @@ public class FileContainerService(
         var res = (await fileContainerRepository.GetByViolationIds(violationIds)).MapToList<FileContainer>(mapper);
         await res.GetFiles(fileService);
 
-        return res;    
+        return res;
     }
 }
 
@@ -70,15 +70,15 @@ public static class FileContainerExtensions
 
         return fileContainer;
     }
-    
+
     public static async Task<List<FileContainer>> GetFiles(this List<FileContainer> fileContainers,
         IFileService fileService)
     {
         var containerIds = fileContainers.Select(f => f.Id).ToList();
         var files = await fileService.GetByContainersId(containerIds);
         var filesGroupByContainerId = files.GroupBy(f => f.FileContainerId).ToDictionary(t => t.Key, t => t.ToList());
-        
-        fileContainers.ForEach(f=>f.Files = filesGroupByContainerId.GetValueOrDefault(f.Id) ?? new List<FileModel>());
+
+        fileContainers.ForEach(f => f.Files = filesGroupByContainerId.GetValueOrDefault(f.Id) ?? new List<FileModel>());
 
         return fileContainers;
     }

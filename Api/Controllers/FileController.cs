@@ -5,6 +5,8 @@ using Services.Models;
 
 namespace Api.Controllers;
 
+[ApiController]
+[Route("files")]
 public class FileController(IFileService fileService, IFileContentService fileContentService) : Controller, ICrudController<FileModel, Guid>
 {
     [HttpPost]
@@ -21,7 +23,13 @@ public class FileController(IFileService fileService, IFileContentService fileCo
     {
         return Ok(await fileService.GetById(id));
     }
-    
+
+    [HttpDelete]
+    public async Task<ActionResult<FileModel>> Delete(Guid id)
+    {
+        return Ok(await fileService.Delete(id));
+    }
+
     [HttpGet("{id}")]
     public async Task<ActionResult> Download(Guid id)
     {
@@ -31,12 +39,7 @@ public class FileController(IFileService fileService, IFileContentService fileCo
         {
             return NotFound();
         }
-        
-        return File(file.Content.Content, file.ContentType);
-    }
 
-    public async Task<ActionResult<FileModel>> Delete(Guid id)
-    {
-        return Ok(await fileService.Delete(id));
+        return File(file.Content.Content, file.ContentType);
     }
 }

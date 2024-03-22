@@ -61,7 +61,7 @@ namespace DataAccess.Sql.Violations {
         
         /// <summary>
         ///   Looks up a localized string similar to delete
-        ///from &quot;DbActionDirection&quot;
+        ///from &quot;DbViolation&quot;
         ///where &quot;Id&quot; = @id.
         /// </summary>
         internal static string Delete {
@@ -72,8 +72,8 @@ namespace DataAccess.Sql.Violations {
         
         /// <summary>
         ///   Looks up a localized string similar to select *
-        ///from &quot;DbActionDirection&quot;
-        ///where &quot;LifeSphereId&quot; = any (@lifeSphereIds).
+        ///from &quot;DbViolation&quot;
+        ///where &quot;UserId&quot; = any (@userIds).
         /// </summary>
         internal static string GetAllByLifeSpheres {
             get {
@@ -83,7 +83,7 @@ namespace DataAccess.Sql.Violations {
         
         /// <summary>
         ///   Looks up a localized string similar to select *
-        ///from &quot;DbActionDirection&quot;
+        ///from &quot;DbViolation&quot;
         ///where &quot;Id&quot; = any (@ids).
         /// </summary>
         internal static string GetByIds {
@@ -93,9 +93,9 @@ namespace DataAccess.Sql.Violations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to insert into &quot;DbActionDirection&quot; (&quot;Id&quot;, &quot;LifeSphereId&quot;, &quot;Title&quot;, &quot;Description&quot;, &quot;CreatedDate&quot;)
-        ///values (@Id, @LifeSphereId, @Title, @Description, @CreatedDate)
-        ///returning &quot;Id&quot;, &quot;LifeSphereId&quot;, &quot;Title&quot;, &quot;Description&quot;, &quot;CreatedDate&quot;  .
+        ///   Looks up a localized string similar to insert into &quot;DbViolation&quot; (&quot;Id&quot;, &quot;UserId&quot;, &quot;Address&quot;, &quot;ViolationType&quot;, &quot;EventDate&quot;, &quot;CreatedDate&quot;, &quot;Comment&quot;, &quot;ViolationStatus&quot;)
+        ///values (@Id, @UserId, @Address, @ViolationType, @EventDate, @CreatedDate, @Comment, @ViolationStatus@)
+        ///returning &quot;Id&quot;, &quot;UserId&quot;, &quot;Address&quot;, &quot;ViolationType&quot;, &quot;EventDate&quot;, &quot;CreatedDate&quot;, &quot;Comment&quot;, &quot;ViolationStatus&quot;.
         /// </summary>
         internal static string Insert {
             get {

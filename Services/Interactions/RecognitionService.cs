@@ -6,13 +6,15 @@ namespace Services.Interactions;
 
 public class RecognitionService : IRecognitionService
 {
-    private IConfiguration _configuration;
     private readonly string recognitionServiceUrl;
+    private readonly IConfiguration _configuration;
+
     public RecognitionService(IConfiguration configuration)
     {
         _configuration = configuration;
         recognitionServiceUrl = _configuration.GetSection("")[""];
     }
+
     public async Task<RecognitionResp?> Recognize(RecognitionReque recognitionReque)
     {
         using (var httpClient = new HttpClient())
@@ -25,7 +27,6 @@ public class RecognitionService : IRecognitionService
 
                 return respContent.FromJson<RecognitionResp>();
             }
-
         }
     }
 }

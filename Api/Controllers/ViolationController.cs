@@ -1,11 +1,12 @@
 ﻿using Api.Controllers.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using Services.Models;
 
 namespace Api.Controllers;
 
+[ApiController]
+[Route("violations")]
 public class ViolationController(IViolationService violationService, IFileContainerService containerService) : BaseController, ICrudController<Violation, Guid>
 {
     [HttpPost]
@@ -19,9 +20,9 @@ public class ViolationController(IViolationService violationService, IFileContai
             ViolationId = violation.Id
         };
 
-       var container = await containerService.Add(newContainer);
+        var container = await containerService.Add(newContainer);
 
-       return Ok(await violationService.GetById(violation.Id));
+        return Ok(await violationService.GetById(violation.Id));
     }
 
     [HttpGet("by-id")]
@@ -29,20 +30,22 @@ public class ViolationController(IViolationService violationService, IFileContai
     {
         return Ok(await violationService.GetById(id));
     }
-    
+
+    [HttpPut]
+    public async Task<ActionResult<Violation>> Update(Violation model)
+    {
+        return Ok(await violationService.Update(model));
+    }
+
+    [HttpDelete]
+    public async Task<ActionResult<Violation>> Delete(Guid id)
+    {
+        return Ok(await violationService.Delete(id));
+    }
+
     [HttpGet("by-userId/{userId}")]
     public async Task<ActionResult<List<Violation>>> GetByUserId(Guid userId)
     {
         return Ok(await violationService.GetByUserId(userId));
-    }
-
-    public Task<ActionResult<Violation>> Update(Violation model)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<ActionResult<Violation>> Delete(Guid id)
-    {
-        throw new NotImplementedException();
     }
 }

@@ -24,13 +24,11 @@ public class UserController : Controller
     {
         return Ok(await _userService.GetAll());
     }
-    
+
     [Authorize]
     [HttpGet("by-id/{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {
         return Ok(await _userService.GetById(id));
     }
-    
-    
 }

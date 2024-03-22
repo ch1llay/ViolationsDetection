@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using DataAccess.Entities;
+﻿using DataAccess.Entities;
 
 namespace DataAccess.Repositories.Interfaces;
 

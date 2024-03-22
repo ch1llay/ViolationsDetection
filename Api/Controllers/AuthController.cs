@@ -11,14 +11,15 @@ using Services.Models;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("access")]
 public class AuthController(IMapper mapper, IUserService userService) : Controller
 {
     [HttpPost("reg")]
     public async Task<IActionResult> Registration(RegRequest regUser, [FromQuery] bool withHash = false)
     {
         var user = await userService.GetByLogin(regUser.Login);
-        regUser.Password = withHash 
+
+        regUser.Password = withHash
             ? regUser.Password
             : regUser.Password.HashString();
 
@@ -35,8 +36,8 @@ public class AuthController(IMapper mapper, IUserService userService) : Controll
     {
         var user = await userService.GetByLogin(authReq.Login);
 
-        var processingPassword = withHash 
-            ? authReq.Password 
+        var processingPassword = withHash
+            ? authReq.Password
             : authReq.Password.HashString();
 
         if (processingPassword != user?.PasswordHash)
@@ -58,8 +59,8 @@ public class AuthController(IMapper mapper, IUserService userService) : Controll
     {
         var token = HttpContext.GetToken();
 
-        var email = JWTParser.GetParameter<string>(token, "name");
+        var userId = JWTParser.GetParameter<string>(token, "UserId");
 
-        return Task.FromResult<IActionResult>(Ok($"Привет, {email}"));
+        return Task.FromResult<IActionResult>(Ok($"UserId: {userId}"));
     }
 }
