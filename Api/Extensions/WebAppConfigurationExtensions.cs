@@ -127,6 +127,7 @@ public static class WebAppConfigurationExtensions
 
     private static void AddTransientGroup(this IServiceCollection services)
     {
+        services.AddTransient<IFileContentService, FileContentService>();
         services.AddTransient<IFileService, FileService>();
         services.AddTransient<IFileContainerService, FileContainerService>();
         services.AddTransient<IUserService, UserService>();
@@ -135,6 +136,7 @@ public static class WebAppConfigurationExtensions
 
     private static void AddScopedGroup(this IServiceCollection services)
     {
+        services.AddScoped<IFileContentRepository, FileContentRepository>();
         services.AddScoped<IFileRepository, FileRepository>();
         services.AddScoped<IFileContainerRepository, FileContainerRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
