@@ -1,3 +1,3 @@
 select *
-from "DbActionDirection"
-where "LifeSphereId" = any (@lifeSphereIds)
+from "DbFile"
+where "FileContainerId" = any (@fileContainerId)

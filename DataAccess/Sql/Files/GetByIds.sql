@@ -1,3 +1,3 @@
 select *
-from "DbActionDirection"
+from "DbFile"
 where "Id" = any (@ids)

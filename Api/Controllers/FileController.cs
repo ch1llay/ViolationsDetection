@@ -7,12 +7,6 @@ namespace Api.Controllers;
 
 public class FileController(IFileService fileService, IFileContentService fileContentService) : Controller, ICrudController<FileModel, Guid>
 {
-    // GET
-    public IActionResult Index()
-    {
-        return Ok();
-    }
-
     [HttpPost]
     public async Task<ActionResult<FileModel>> Add(FileModel model)
     {

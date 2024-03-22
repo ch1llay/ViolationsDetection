@@ -1,3 +1,3 @@
 select *
-from "DbActionDirection"
+from "DbFileContainer"
 where "Id" = any (@ids)

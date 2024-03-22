@@ -1,3 +1,3 @@
 delete
-from "DbActionDirection"
+from "DbFileContainer"
 where "Id" = @id

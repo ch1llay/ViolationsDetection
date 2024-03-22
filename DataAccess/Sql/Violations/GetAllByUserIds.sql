@@ -1,3 +1,3 @@
 select *
-from "DbActionDirection"
-where "LifeSphereId" = any (@lifeSphereIds)
+from "DbViolation"
+where "UserId" = any (@userIds)

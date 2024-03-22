@@ -1,3 +1,3 @@
 delete
-from "DbActionDirection"
+from "DbViolation"
 where "Id" = @id

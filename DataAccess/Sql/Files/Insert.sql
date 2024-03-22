@@ -1,3 +1,3 @@
-insert into "DbActionDirection" ("Id", "LifeSphereId", "Title", "Description", "CreatedDate")
-values (@Id, @LifeSphereId, @Title, @Description, @CreatedDate)
-returning "Id", "LifeSphereId", "Title", "Description", "CreatedDate"  
+insert into "DbFile" ("Id", "UserId", "FileContainerId", "Filename", "CreatedDate")
+values (@Id, @UserId, @FileContainerId, @Filename, @CreatedDate)
+returning  "Id", "UserId", "FileContainerId", "Filename", "CreatedDate"

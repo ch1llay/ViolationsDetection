@@ -1,3 +1,3 @@
 select *
-from "DbActionDirection"
+from "DbViolation"
 where "Id" = any (@ids)
