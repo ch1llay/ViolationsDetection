@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Services;
+using Services.Interactions;
 using Services.Interfaces;
 
 namespace Api.Extensions;
@@ -139,6 +140,7 @@ public static class WebAppConfigurationExtensions
         services.AddTransient<IFileContainerService, FileContainerService>();
         services.AddTransient<IUserService, UserService>();
         services.AddTransient<IViolationService, ViolationService>();
+        services.AddTransient<IRecognitionService, RecognitionService>();
     }
 
     private static void AddScopedGroup(this IServiceCollection services)
