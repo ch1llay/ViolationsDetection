@@ -56,7 +56,7 @@ public static class ViolationExtensions
         IFileContainerService fileContainerService)
     {
         var fileContainer = await fileContainerService.GetByViolationId(violation.Id);
-        violation.FileContainer = fileContainer;
+        violation.Files = fileContainer.Files;
 
         return violation;
     }
@@ -68,7 +68,7 @@ public static class ViolationExtensions
         var fileContainers = await fileContainerService.GetByViolationIds(violationIds);
         var fileContainersByViolationId = fileContainers.GroupBy(f => f.ViolationId).ToDictionary(t => t.Key, t => t.FirstOrDefault());
         
-        violations.ForEach(f=>f.FileContainer = fileContainersByViolationId.GetValueOrDefault(f.Id) ?? new FileContainer());
+        violations.ForEach(v=>v.Files = fileContainersByViolationId.GetValueOrDefault(v.Id)?.Files ?? new List<FileModel>());
 
         return violations;
     }

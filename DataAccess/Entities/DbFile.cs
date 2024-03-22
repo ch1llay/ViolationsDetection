@@ -13,5 +13,6 @@ public class DbFile
     public Guid? FileContainerId { get; set; }
 
     public string Filename { get; set; }
+    public string ContentType { get; set; }
     public DateTime CreatedDate { get; set; }
 }

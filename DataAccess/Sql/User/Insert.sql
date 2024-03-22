@@ -1,3 +1,3 @@
-insert into "DbUser" ("Id", "Login", "PasswordHash", "Email", "Name", "Birthday", "Height", "Weight")
-values (@Id, @Login, @PasswordHash, @Email, @Name, @Birthday, @Height, @Weight)
-returning "Id", "Login", "PasswordHash", "Email", "Name", "Birthday", "Height", "Weight"
+insert into "DbUser" ("Id", "AvatarFileId", "Login", "PasswordHash", "FirstName", "LastName", "Patronymic", "PhoneNumber", "Email")
+values (@Id, @AvatarFileId, @Login, @PasswordHash, @FirstName, @LastName, @Patronymic, @PhoneNumber, @Email)
+returning "Id", "AvatarFileId", "Login", "PasswordHash", "FirstName", "LastName", "Patronymic", "PhoneNumber", "Email"

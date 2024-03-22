@@ -7,5 +7,6 @@ public class FileModel
     public Guid? FileContainerId { get; set; }
     public string Filename { get; set; }
     public DateTime CreatedDate { get; set; }
+    public string ContentType { get; set; }
     public FileContent Content { get; set; }
 }

@@ -29,9 +29,9 @@ public class FileContentRepository(IDataContext dataContext) : IFileContentRepos
         return await dataContext.EnumerableOrEmptyAsync<DbFileContent>(Files.GetByIds, new {ids});
     }
 
-    public async Task<DbFileContent?> GetByFileId(Guid fileId)
+    public async Task<IEnumerable<DbFileContent>> GetByFileIds(IEnumerable<Guid> fileIds)
     {
-        return await dataContext.FirstOrDefaultAsync<DbFileContent>(Files.GetByIds, new {fileId});
+        return await dataContext.EnumerableOrEmptyAsync<DbFileContent>(Files.GetByIds, new{fileIds});
     }
     
 }

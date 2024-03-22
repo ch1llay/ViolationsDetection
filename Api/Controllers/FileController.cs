@@ -5,7 +5,7 @@ using Services.Models;
 
 namespace Api.Controllers;
 
-public class FileController(IFileService fileService) : Controller, ICrudController<FileModel, Guid>
+public class FileController(IFileService fileService, IFileContentService fileContentService) : Controller, ICrudController<FileModel, Guid>
 {
     // GET
     public IActionResult Index()
@@ -16,7 +16,10 @@ public class FileController(IFileService fileService) : Controller, ICrudControl
     [HttpPost]
     public async Task<ActionResult<FileModel>> Add(FileModel model)
     {
-        return Ok(await fileService.Add(model));
+        var file = await fileService.Add(model);
+        var content = await fileContentService.Add(model.Content);
+
+        return await fileService.GetById(file.Id);
     }
 
     [HttpGet("by-id/{id}")]
@@ -24,14 +27,22 @@ public class FileController(IFileService fileService) : Controller, ICrudControl
     {
         return Ok(await fileService.GetById(id));
     }
-
-    public Task<ActionResult<FileModel>> Update(FileModel model)
+    
+    [HttpGet("{id}")]
+    public async Task<ActionResult> Download(Guid id)
     {
-        throw new NotImplementedException();
+        var file = await fileService.GetById(id);
+
+        if (file == null)
+        {
+            return NotFound();
+        }
+        
+        return File(file.Content.Content, file.ContentType);
     }
 
-    public Task<ActionResult<FileModel>> Delete(Guid id)
+    public async Task<ActionResult<FileModel>> Delete(Guid id)
     {
-        throw new NotImplementedException();
+        return Ok(await fileService.Delete(id));
     }
 }
