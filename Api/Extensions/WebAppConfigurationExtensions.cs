@@ -91,6 +91,7 @@ public static class WebAppConfigurationExtensions
         app.AddMigrations();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.UseCors(builder => builder.AllowAnyOrigin());
         app.UseMiddleware<GlobalExceptionMiddleware>();
         app.MapControllers();
 
@@ -112,6 +113,7 @@ public static class WebAppConfigurationExtensions
 
         builder.Services.AddControllers().AddNewtonsoftJson();
         builder.AddAuthenticationWithOptions();
+        builder.Services.AddCors();
         builder.ConfigureService();
         builder.AddSwaggerOptions();
         builder.Services.AddSwaggerGen();
