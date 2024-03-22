@@ -91,7 +91,12 @@ public static class WebAppConfigurationExtensions
         app.AddMigrations();
         app.UseAuthentication();
         app.UseAuthorization();
-        app.UseCors(builder => builder.AllowAnyOrigin());
+        app.UseCors(builder =>
+        {
+            builder.AllowAnyOrigin();
+            builder.AllowAnyHeader();
+            builder.AllowAnyMethod();
+        });
         app.UseMiddleware<GlobalExceptionMiddleware>();
         app.MapControllers();
 
