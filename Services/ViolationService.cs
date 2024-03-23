@@ -60,7 +60,8 @@ public class ViolationService(
         await violationRepository.AddViolationFiles(recognitionFileIds.Select(f => new DbViolationFile
         {
             ViolationId = model.Id,
-            FileId = f
+            FileId = f,
+            WithDetect = true
         }).ToList());
         
         return violation;
