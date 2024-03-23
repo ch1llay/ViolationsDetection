@@ -11,17 +11,17 @@ public class FileContentRepository(IDataContext dataContext) : IFileContentRepos
     {
         model.Id = Guid.NewGuid();
 
-        return await dataContext.InsertAsync<DbFileContent>(Files.Insert, model);
+        return await dataContext.InsertAsync<DbFileContent>(Files.InsertFileContent, model);
     }
 
     public async Task<DbFileContent> Update(DbFileContent model)
     {
-        return await dataContext.UpdateAsync<DbFileContent>(Files.Update, model);
+        throw new NotImplementedException();
     }
 
     public async Task<bool> Delete(Guid id)
     {
-        return await dataContext.DeleteAsync(Files.Delete, new {id});
+        throw new NotImplementedException();
     }
 
     public async Task<IEnumerable<DbFileContent>> GetByIds(IEnumerable<Guid> ids)
@@ -31,6 +31,6 @@ public class FileContentRepository(IDataContext dataContext) : IFileContentRepos
 
     public async Task<IEnumerable<DbFileContent>> GetByFileIds(IEnumerable<Guid> fileIds)
     {
-        return await dataContext.EnumerableOrEmptyAsync<DbFileContent>(Files.GetByIds, new {fileIds});
+        return await dataContext.EnumerableOrEmptyAsync<DbFileContent>(Files.GetFileContentByFileIds, new {fileIds});
     }
 }

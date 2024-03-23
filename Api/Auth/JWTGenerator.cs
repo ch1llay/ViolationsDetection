@@ -6,9 +6,9 @@ namespace Api.Auth;
 
 public class JWTGenerator
 {
-    public static string Generate(string login)
+    public static string Generate(Dictionary<string, string> values)
     {
-        var claims = new List<Claim> {new("login", login)};
+        var claims = values.Select(v => new Claim(v.Key, v.Value));
 
         // создаем JWT-токен
         var jwt = new JwtSecurityToken(

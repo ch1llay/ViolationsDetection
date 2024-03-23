@@ -93,13 +93,35 @@ namespace DataAccess.Sql.Files {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to insert into &quot;DbFile&quot; (&quot;Id&quot;, &quot;UserId&quot;, &quot;Filename&quot;, &quot;CreatedDate&quot;)
-        ///values (@Id, @UserId, @Filename, @CreatedDate)
-        ///returning &quot;Id&quot;, &quot;UserId&quot;, &quot;Filename&quot;, &quot;CreatedDate&quot;.
+        ///   Looks up a localized string similar to select *
+        ///from &quot;DbFileContent&quot;
+        ///where &quot;FileId&quot; = any (@fileIds).
+        /// </summary>
+        internal static string GetFileContentByFileIds {
+            get {
+                return ResourceManager.GetString("GetFileContentByFileIds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to insert into &quot;DbFile&quot; (&quot;Id&quot;, &quot;UserId&quot;, &quot;Filename&quot;, &quot;ContentType&quot;, &quot;CreatedDate&quot;)
+        ///values (@Id, @UserId, @Filename, @ContentType, @CreatedDate)
+        ///returning &quot;Id&quot;, &quot;UserId&quot;, &quot;Filename&quot;, &quot;ContentType&quot;, &quot;CreatedDate&quot;.
         /// </summary>
         internal static string Insert {
             get {
                 return ResourceManager.GetString("Insert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to insert into &quot;DbFileContent&quot; (&quot;Id&quot;, &quot;FileId&quot;, &quot;Content&quot;)
+        ///values (@Id, @FileId, @Content)
+        ///returning &quot;Id&quot;, &quot;FileId&quot;, &quot;Content&quot;.
+        /// </summary>
+        internal static string InsertFileContent {
+            get {
+                return ResourceManager.GetString("InsertFileContent", resourceCulture);
             }
         }
         

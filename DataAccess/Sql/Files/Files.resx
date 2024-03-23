@@ -22,8 +22,14 @@
     <data name="Insert" type="System.Resources.ResXFileRef, System.Windows.Forms">
         <value>Insert.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
     </data>
+    <data name="InsertFileContent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>InsertFileContent.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+    </data>
     <data name="GetByIds" type="System.Resources.ResXFileRef, System.Windows.Forms">
         <value>GetByIds.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+    </data>
+    <data name="GetFileContentByFileIds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+        <value>GetFileContentByFileIds.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
     </data>
     <data name="GetByUserIds" type="System.Resources.ResXFileRef, System.Windows.Forms">
         <value>GetByUserIds.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>

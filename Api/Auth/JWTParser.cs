@@ -11,7 +11,7 @@ public class JWTParser
             var handler = new JwtSecurityTokenHandler();
             var data = handler.ReadJwtToken(jwtInput.Split(' ')[1]);
 
-            return data.Payload.Claims.FirstOrDefault(c => c.Type == "Email")?.Value as T ?? default(T);
+            return data.Payload.Claims.FirstOrDefault(c => c.Type == parameterKey)?.Value as T ?? default(T);
         }
         catch (Exception ex)
         {

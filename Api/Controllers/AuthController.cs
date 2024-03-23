@@ -47,7 +47,7 @@ public class AuthController(IMapper mapper, IUserService userService) : Controll
 
         return Ok(new AuthResp
         {
-            AccessToken = JWTGenerator.Generate(user.Email),
+            AccessToken = JWTGenerator.Generate(new Dictionary<string, string>{{"UserId", user.Id.ToString()}} ),
             User = user,
             Success = true
         });
