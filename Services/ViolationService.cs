@@ -38,6 +38,7 @@ public class ViolationService(
     public async Task<List<Violation>> GetByIds(IEnumerable<Guid> ids)
     {
         var res = (await violationRepository.GetByIds(ids)).MapToList<Violation>(mapper);
+        await res.GetFiles(violationRepository);
 
         return res;
     }
@@ -45,13 +46,15 @@ public class ViolationService(
     public async Task<Violation> GetById(Guid id)
     {
         var res = (await violationRepository.GetByIds(new List<Guid> {id})).Map<Violation>(mapper);
-
+        await res.GetFiles(violationRepository);
+        
         return res;
     }
 
     public async Task<List<Violation>> GetByUserId(Guid userId)
     {
         var res = (await violationRepository.GetByUserId(new List<Guid> {userId})).MapToList<Violation>(mapper);
+        await res.GetFiles(violationRepository);
 
         return res;
     }
