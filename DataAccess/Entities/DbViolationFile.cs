@@ -2,7 +2,7 @@
 
 namespace DataAccess.Entities;
 
-[TableOrder(2)]
+[TableOrder(4)]
 public class DbViolationFile
 {
     [PrimaryKey] public Guid Id { get; set; }

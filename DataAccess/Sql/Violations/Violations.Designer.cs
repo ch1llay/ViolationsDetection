@@ -93,6 +93,17 @@ namespace DataAccess.Sql.Violations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to select *
+        ///from &quot;DbViolationFile&quot;
+        ///where &quot;ViolationId&quot; = any (@violationIds).
+        /// </summary>
+        internal static string GetViolationFilesByViolationIds {
+            get {
+                return ResourceManager.GetString("GetViolationFilesByViolationIds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to insert into &quot;DbViolation&quot; (&quot;Id&quot;, &quot;UserId&quot;, &quot;Address&quot;, &quot;ViolationType&quot;, &quot;EventDate&quot;, &quot;CreatedDate&quot;, &quot;Comment&quot;, &quot;ViolationStatus&quot;)
         ///values (@Id, @UserId, @Address, @ViolationType, @EventDate, @CreatedDate, @Comment, @ViolationStatus@)
         ///returning &quot;Id&quot;, &quot;UserId&quot;, &quot;Address&quot;, &quot;ViolationType&quot;, &quot;EventDate&quot;, &quot;CreatedDate&quot;, &quot;Comment&quot;, &quot;ViolationStatus&quot;.
@@ -104,9 +115,18 @@ namespace DataAccess.Sql.Violations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to insert into &quot;DbTask&quot; (&quot;Id&quot;, &quot;Title&quot;, &quot;CreatedDate&quot;, &quot;StartExecutionDate&quot;, &quot;DeadlineDate&quot;)
-        ///values (@Id, @Title, @CreatedDate, @StartExecutionDate, @DeadlineDate)
-        ///returning &quot;Id&quot;, &quot;ProjectId&quot;, &quot;Title&quot;, &quot;CreatedDate&quot;, &quot;StartExecutionDate&quot;, &quot;DeadlineDate&quot;.
+        ///   Looks up a localized string similar to insert into &quot;DbViolation&quot; (&quot;Id&quot;, &quot;UserId&quot;, &quot;Address&quot;, &quot;ViolationType&quot;, &quot;EventDate&quot;, &quot;CreatedDate&quot;, &quot;Comment&quot;, &quot;ViolationStatus&quot;)
+        ///values (@Id, @UserId, @Address, @ViolationType, @EventDate, @CreatedDate, @Comment, @ViolationStatus@)
+        ///returning &quot;Id&quot;, &quot;UserId&quot;, &quot;Address&quot;, &quot;ViolationType&quot;, &quot;EventDate&quot;, &quot;CreatedDate&quot;, &quot;Comment&quot;, &quot;ViolationStatus&quot;.
+        /// </summary>
+        internal static string InsertViolationFile {
+            get {
+                return ResourceManager.GetString("InsertViolationFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string Update {
             get {

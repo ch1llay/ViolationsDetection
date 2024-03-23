@@ -41,13 +41,13 @@ public class ViolationRepository(IDataContext dataContext) : IViolationRepositor
             violationFile.Id = Guid.NewGuid();
         }
         
-        var files = await dataContext.InsertManyAsync<DbViolationFile>(Violations.Insert, violationFiles);;
+        var files = await dataContext.InsertManyAsync<DbViolationFile>(Violations.InsertViolationFile, violationFiles);;
 
         return files.Count();
     }
 
     public async Task<IEnumerable<DbViolationFile>> GetViolationFilesByViolationIds(List<Guid> violationIds)
     {
-        return await dataContext.EnumerableOrEmptyAsync<DbViolationFile>(Violations.GetAllByLifeSpheres, new {violationIds});
+        return await dataContext.EnumerableOrEmptyAsync<DbViolationFile>(Violations.GetViolationFilesByViolationIds, new {violationIds});
     }
 }
