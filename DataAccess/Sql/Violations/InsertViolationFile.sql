@@ -1,3 +1,3 @@
-insert into "DbViolationFile" ("Id", "ViolationId", "FileId")
-values (@Id, @ViolationId, @FileId)
-returning "Id", "ViolationId", "FileId"
+insert into "DbViolationFile" ("Id", "ViolationId", "FileId", "WithDetect")
+values (@Id, @ViolationId, @FileId, @WithDetect)
+returning "Id", "ViolationId", "FileId", "WithDetect"

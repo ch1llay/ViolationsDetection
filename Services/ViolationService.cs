@@ -2,6 +2,8 @@
 using Common.Extensions;
 using DataAccess.Entities;
 using DataAccess.Repositories.Interfaces;
+using Services.Interactions;
+using Services.Interactions.Models;
 using Services.Interfaces;
 using Services.Models;
 
@@ -9,14 +11,53 @@ namespace Services;
 
 public class ViolationService(
     IMapper mapper,
-    IViolationRepository violationRepository
+    IViolationRepository violationRepository,
+    IRecognitionService recognitionService,
+    IFileService fileService
 ) : IViolationService
 {
     public async Task<Violation> Add(Violation model)
     {
+        var recognitionFileIds = new List<Guid>();
+        foreach (var fileLink in model.FileLinks)
+        {
+            var file = await fileService.GetByIdWithContent(fileLink);
+
+            var recognitionResp = await recognitionService.Recognize(new RecognitionReque
+            {
+                Content = new ByteArrayContent(file.Content)
+
+            });
+
+            if (recognitionResp == null)
+            {
+                continue;
+            }
+            
+            model.ViolationType = recognitionResp.ViolationType;
+
+            var detectFile = await fileService.Add(new FileModel
+            {
+                Filename = $"Detect {file.Filename}",
+                CreatedDate = DateTime.Now,
+                ContentType = file.ContentType,
+                Content = await recognitionResp.Content.ReadAsByteArrayAsync()
+            });
+            
+            recognitionFileIds.Add(detectFile.Id);
+        }
+
+            
         var violation = (await violationRepository.Add(model.Map<DbViolation>(mapper))).Map<Violation>(mapper);
 
+       
         await violationRepository.AddViolationFiles(model.FileLinks.Select(f => new DbViolationFile
+        {
+            ViolationId = model.Id,
+            FileId = f
+        }).ToList());
+        
+        await violationRepository.AddViolationFiles(recognitionFileIds.Select(f => new DbViolationFile
         {
             ViolationId = model.Id,
             FileId = f

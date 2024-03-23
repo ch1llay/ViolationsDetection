@@ -1,3 +1,9 @@
-﻿namespace Services.Interactions.Models;
+﻿using Common.Enums;
 
-public class RecognitionResp { }
+namespace Services.Interactions.Models;
+
+public class RecognitionResp
+{
+    public ViolationType ViolationType { get; set; }
+    public ByteArrayContent Content { get; set; }
+}

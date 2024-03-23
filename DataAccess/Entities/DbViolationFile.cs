@@ -11,4 +11,5 @@ public class DbViolationFile
     public Guid ViolationId { get; set; }
     [ForeignKey(nameof(DbFile), nameof(DbFile.Id))]
     public Guid FileId { get; set; }
+    public bool WithDetect { get; set; }
 }
