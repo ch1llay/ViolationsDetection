@@ -53,18 +53,19 @@ public class ViolationService(
        
         await violationRepository.AddViolationFiles(model.FileLinks.Select(f => new DbViolationFile
         {
-            ViolationId = model.Id,
-            FileId = f
-        }).ToList());
-        
-        await violationRepository.AddViolationFiles(recognitionFileIds.Select(f => new DbViolationFile
-        {
-            ViolationId = model.Id,
+            ViolationId = violation.Id,
             FileId = f,
             WithDetect = true
         }).ToList());
         
-        return violation;
+        await violationRepository.AddViolationFiles(recognitionFileIds.Select(f => new DbViolationFile
+        {
+            ViolationId = violation.Id,
+            FileId = f,
+            WithDetect = true
+        }).ToList());
+        
+        return await GetById(violation.Id);
     }
 
     public async Task<Violation> Update(Violation model)
@@ -87,7 +88,13 @@ public class ViolationService(
 
     public async Task<Violation> GetById(Guid id)
     {
-        var res = (await violationRepository.GetByIds(new List<Guid> {id})).Map<Violation>(mapper);
+        var res = (await violationRepository.GetByIds(new List<Guid> {id})).FirstOrDefault()?.Map<Violation>(mapper);
+
+        if (res == null)
+        {
+            return null;
+        }
+        
         await res.GetFiles(violationRepository);
         
         return res;

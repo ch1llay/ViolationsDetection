@@ -1,3 +1,3 @@
 select *
 from "DbViolationFile"
-where "ViolationId" = any (@violationIds) and "WithDetect" = 1
+where "ViolationId" = any (@violationIds) and "WithDetect" = true

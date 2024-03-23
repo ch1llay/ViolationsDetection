@@ -2,7 +2,7 @@
 
 public class ForeignKeyAttribute : ColumnKeyAttribute
 {
-    public ForeignKeyAttribute(string referenceTableName, string referenceTableColumnName)
+    public ForeignKeyAttribute(string referenceTableName, string referenceTableColumnName, bool isUniq = false) : base(isUniq)
     {
         ReferenceTableName = referenceTableName;
         ReferenceTableColumnName = referenceTableColumnName;

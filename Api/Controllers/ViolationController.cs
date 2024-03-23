@@ -14,6 +14,8 @@ public class ViolationController(IViolationService violationService) : BaseContr
     [HttpPost]
     public async Task<ActionResult<Violation>> Add(Violation model)
     {
+        model.UserId = UserId;
+        
         return Ok(await violationService.Add(model));
     }
 
@@ -35,9 +37,9 @@ public class ViolationController(IViolationService violationService) : BaseContr
         return Ok(await violationService.Delete(id));
     }
 
-    [HttpGet("by-userId/{userId}")]
-    public async Task<ActionResult<List<Violation>>> GetByUserId(Guid userId)
+    [HttpGet("my")]
+    public async Task<ActionResult<List<Violation>>> GetByUserId()
     {
-        return Ok(await violationService.GetByUserId(userId));
+        return Ok(await violationService.GetByUserId(UserId));
     }
 }

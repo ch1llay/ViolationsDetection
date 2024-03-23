@@ -17,16 +17,25 @@ public class RecognitionService : IRecognitionService
 
     public async Task<RecognitionResp?> Recognize(RecognitionReque recognitionReque)
     {
-        using (var httpClient = new HttpClient())
+        try
         {
-            using (var content = new MultipartFormDataContent())
+            using (var httpClient = new HttpClient())
             {
-                content.Add(recognitionReque.Content);
-                var resp = await httpClient.PostAsync($"{recognitionServiceUrl}/detect", content);
-                var respContent = await resp.Content.ReadAsStringAsync();
+                using (var content = new MultipartFormDataContent())
+                {
+                    content.Add(recognitionReque.Content);
+                    var resp = await httpClient.PostAsync($"{recognitionServiceUrl}/detect", content);
+                    var respContent = await resp.Content.ReadAsStringAsync();
 
-                return respContent.FromJson<RecognitionResp>();
+                    return respContent.FromJson<RecognitionResp>();
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+
+            return null;
         }
     }
 }
