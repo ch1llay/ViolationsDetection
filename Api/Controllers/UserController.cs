@@ -6,6 +6,7 @@ using Services.Interfaces;
 namespace Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("users")]
 public class UserController : Controller
 {
@@ -18,14 +19,12 @@ public class UserController : Controller
         _userService = userService;
     }
 
-    [Authorize]
     [HttpGet("all")]
     public async Task<IActionResult> GetAll()
     {
         return Ok(await _userService.GetAll());
     }
 
-    [Authorize]
     [HttpGet("by-id/{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {

@@ -1,4 +1,5 @@
 ﻿using Api.Controllers.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
 using Services.Models;
@@ -6,6 +7,7 @@ using Services.Models;
 namespace Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("files")]
 public class FileController(IFileService fileService) : BaseController
 {
