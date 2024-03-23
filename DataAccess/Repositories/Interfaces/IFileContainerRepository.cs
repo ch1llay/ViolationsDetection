@@ -2,7 +2,7 @@
 
 namespace DataAccess.Repositories.Interfaces;
 
-public interface IFileContainerRepository : IRepository<DbFileContainer>
+public interface IFileContainerRepository : IRepository<DbViolationFile>
 {
-    public Task<IEnumerable<DbFileContainer>> GetByViolationIds(List<Guid> violationIds);
+    public Task<IEnumerable<DbViolationFile>> GetByViolationIds(List<Guid> violationIds);
 }

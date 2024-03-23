@@ -25,16 +25,16 @@ public class DapperContext : IDataContext
         return await db.QueryFirstOrDefaultAsync<T>(script, param);
     }
 
-    public async Task<IEnumerable<int>> InsertManyAsync<T>(string script, IEnumerable<T> objects)
+    public async Task<IEnumerable<Guid>> InsertManyAsync<T>(string script, IEnumerable<T> objects)
     {
         script = PrepareInsertQuery(script);
         await using var db = _connectionMethod();
         using IDbTransaction transaction = await db.BeginTransactionAsync();
-        var insertedObjectsIds = new List<int>();
+        var insertedObjectsIds = new List<Guid>();
 
         foreach (var item in objects)
         {
-            var id = await db.ExecuteScalarAsync<int>(script, item, transaction);
+            var id = await db.ExecuteScalarAsync<Guid>(script, item, transaction);
             insertedObjectsIds.Add(id);
         }
 

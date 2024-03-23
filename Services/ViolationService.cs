@@ -9,12 +9,20 @@ namespace Services;
 
 public class ViolationService(
     IMapper mapper,
-    IViolationRepository violationRepository,
-    IFileContainerService fileContainerService) : IViolationService
+    IViolationRepository violationRepository
+) : IViolationService
 {
     public async Task<Violation> Add(Violation model)
     {
-        return (await violationRepository.Add(model.Map<DbViolation>(mapper))).Map<Violation>(mapper);
+        var violation = (await violationRepository.Add(model.Map<DbViolation>(mapper))).Map<Violation>(mapper);
+
+        await violationRepository.AddViolationFiles(model.FileLinks.Select(f => new DbViolationFile
+        {
+            ViolationId = model.Id,
+            FileId = f
+        }).ToList());
+        
+        return violation;
     }
 
     public async Task<Violation> Update(Violation model)
@@ -52,22 +60,25 @@ public class ViolationService(
 public static class ViolationExtensions
 {
     public static async Task<Violation> GetFiles(this Violation violation,
-        IFileContainerService fileContainerService)
+        IViolationRepository violationRepository
+        )
     {
-        var fileContainer = await fileContainerService.GetByViolationId(violation.Id);
-        violation.Files = fileContainer.Files;
+        var fileLinks = (await violationRepository.GetViolationFilesByViolationIds( new List<Guid> {violation.Id})).Select(f => f.FileId).ToList();
+        violation.FileLinks = fileLinks;
 
         return violation;
     }
 
     public static async Task<List<Violation>> GetFiles(this List<Violation> violations,
-        IFileContainerService fileContainerService)
+        IViolationRepository violationRepository)
     {
         var violationIds = violations.Select(f => f.Id).ToList();
-        var fileContainers = await fileContainerService.GetByViolationIds(violationIds);
-        var fileContainersByViolationId = fileContainers.GroupBy(f => f.ViolationId).ToDictionary(t => t.Key, t => t.FirstOrDefault());
+        var fileLinks = await violationRepository.GetViolationFilesByViolationIds(violationIds);
+        var fileLinksByViolationId = fileLinks
+            .GroupBy(f => f.ViolationId)
+            .ToDictionary(t => t.Key, t => t.Select(f => f.FileId).ToList());
 
-        violations.ForEach(v => v.Files = fileContainersByViolationId.GetValueOrDefault(v.Id)?.Files ?? new List<FileModel>());
+        violations.ForEach(v => v.FileLinks = fileLinksByViolationId.GetValueOrDefault(v.Id) ?? new List<Guid>());
 
         return violations;
     }

@@ -13,6 +13,6 @@ public class AppMappingProfile : Profile
 
         CreateMap<DbUser, User>().ReverseMap();
         CreateMap<DbViolation, Violation>().ReverseMap();
-        CreateMap<DbFileContainer, FileContainer>().ReverseMap();
+        CreateMap<DbViolationFile, FileContainer>().ReverseMap();
     }
 }

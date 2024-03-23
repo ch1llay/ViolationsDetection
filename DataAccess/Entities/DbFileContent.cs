@@ -8,7 +8,7 @@ public class DbFileContent
     [PrimaryKey] public Guid Id { get; set; }
 
     [ForeignKey(nameof(DbFile), nameof(DbFile.Id))]
-    public Guid? FileContainerId { get; set; }
+    public Guid? FileId { get; set; }
 
     public byte[] Content { get; set; }
 }

@@ -33,4 +33,21 @@ public class ViolationRepository(IDataContext dataContext) : IViolationRepositor
     {
         return await dataContext.EnumerableOrEmptyAsync<DbViolation>(Violations.GetAllByLifeSpheres, new {userIds});
     }
+
+    public async Task<int> AddViolationFiles(List<DbViolationFile> violationFiles)
+    {
+        foreach (var violationFile in violationFiles)
+        {
+            violationFile.Id = Guid.NewGuid();
+        }
+        
+        var files = await dataContext.InsertManyAsync<DbViolationFile>(Violations.Insert, violationFiles);;
+
+        return files.Count();
+    }
+
+    public async Task<IEnumerable<DbViolationFile>> GetViolationFilesByViolationIds(List<Guid> violationIds)
+    {
+        return await dataContext.EnumerableOrEmptyAsync<DbViolationFile>(Violations.GetAllByLifeSpheres, new {violationIds});
+    }
 }

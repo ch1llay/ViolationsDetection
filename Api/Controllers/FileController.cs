@@ -7,15 +7,25 @@ namespace Api.Controllers;
 
 [ApiController]
 [Route("files")]
-public class FileController(IFileService fileService, IFileContentService fileContentService) : Controller, ICrudController<FileModel, Guid>
+public class FileController(IFileService fileService) : BaseController
 {
     [HttpPost]
-    public async Task<ActionResult<FileModel>> Add(FileModel model)
+    public async Task<ActionResult<Guid>> Add(IFormFile formFile)
     {
-        var file = await fileService.Add(model);
-        var content = await fileContentService.Add(model.Content);
+        using var memoryStream = new MemoryStream();
+        await formFile.CopyToAsync(memoryStream);
+        var fileModel = new FileModel
+        {
+            Filename = formFile.FileName,
+            ContentType = formFile.ContentType,
+            CreatedDate = DateTime.Now,
+            UserId = UserId,
+            Content = memoryStream.ToArray()
+        };
+            
+        var file = await fileService.Add(fileModel);
 
-        return await fileService.GetById(file.Id);
+        return file.Id;
     }
 
     [HttpGet("by-id/{id}")]
@@ -33,13 +43,13 @@ public class FileController(IFileService fileService, IFileContentService fileCo
     [HttpGet("{id}")]
     public async Task<ActionResult> Download(Guid id)
     {
-        var file = await fileService.GetById(id);
+        var file = await fileService.GetByIdWithContent(id);
 
         if (file == null)
         {
             return NotFound();
         }
 
-        return File(file.Content.Content, file.ContentType);
+        return File(file.Content, file.ContentType);
     }
 }

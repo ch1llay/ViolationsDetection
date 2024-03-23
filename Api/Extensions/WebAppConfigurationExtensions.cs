@@ -137,9 +137,7 @@ public static class WebAppConfigurationExtensions
 
     private static void AddTransientGroup(this IServiceCollection services)
     {
-        services.AddTransient<IFileContentService, FileContentService>();
         services.AddTransient<IFileService, FileService>();
-        services.AddTransient<IFileContainerService, FileContainerService>();
         services.AddTransient<IUserService, UserService>();
         services.AddTransient<IViolationService, ViolationService>();
         services.AddTransient<IRecognitionService, RecognitionService>();

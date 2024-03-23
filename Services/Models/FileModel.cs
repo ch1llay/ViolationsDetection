@@ -1,4 +1,6 @@
-﻿namespace Services.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace Services.Models;
 
 public class FileModel
 {
@@ -8,5 +10,6 @@ public class FileModel
     public string Filename { get; set; }
     public DateTime CreatedDate { get; set; }
     public string ContentType { get; set; }
-    public FileContent Content { get; set; }
+    [JsonIgnore]
+    public byte[] Content { get; set; }
 }

@@ -9,7 +9,7 @@ public class DbFile
 
     public Guid UserId { get; set; }
 
-    [ForeignKey(nameof(DbFileContainer), nameof(DbFileContainer.Id))]
+    [ForeignKey(nameof(DbViolationFile), nameof(DbViolationFile.Id))]
     public Guid? FileContainerId { get; set; }
 
     public string Filename { get; set; }

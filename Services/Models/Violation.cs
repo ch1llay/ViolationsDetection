@@ -13,5 +13,5 @@ public class Violation
     public DateTime CreatedDate { get; set; }
     public string Comment { get; set; }
     public ViolationStatus ViolationStatus { get; set; }
-    public List<FileModel> Files { get; set; }
+    public List<Guid> FileLinks { get; set; } = new List<Guid>();
 }

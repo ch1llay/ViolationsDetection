@@ -7,22 +7,12 @@ namespace Api.Controllers;
 
 [ApiController]
 [Route("violations")]
-public class ViolationController(IViolationService violationService, IFileContainerService containerService) : BaseController, ICrudController<Violation, Guid>
+public class ViolationController(IViolationService violationService) : BaseController, ICrudController<Violation, Guid>
 {
     [HttpPost]
     public async Task<ActionResult<Violation>> Add(Violation model)
     {
-        var violation = await violationService.Add(model);
-
-        var newContainer = new FileContainer
-        {
-            Files = model.Files,
-            ViolationId = violation.Id
-        };
-
-        var container = await containerService.Add(newContainer);
-
-        return Ok(await violationService.GetById(violation.Id));
+        return Ok(await violationService.Add(model));
     }
 
     [HttpGet("by-id")]

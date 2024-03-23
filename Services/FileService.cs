@@ -10,11 +10,24 @@ namespace Services;
 public class FileService(
     IMapper mapper,
     IFileRepository fileRepository,
-    IFileContentService fileContentService) : IFileService
+    IFileContentRepository fileContentRepository) : IFileService
 {
-    public async Task<FileModel> Add(FileModel model)
+    public async Task<FileModel?> Add(FileModel model)
     {
-        return (await fileRepository.Add(model.Map<DbFile>(mapper))).Map<FileModel>(mapper);
+        var file = await fileRepository.Add(model.Map<DbFile>(mapper));
+
+        var fileContent = await fileContentRepository.Add(new DbFileContent
+        {
+            FileId = file.Id,
+            Content = model.Content
+        });
+
+        if (fileContent == null)
+        {
+            return null;
+        }
+
+        return file.Map<FileModel>(mapper);
     }
 
     public async Task<FileModel> Update(FileModel model)
@@ -64,9 +77,9 @@ public class FileService(
             return null;
         }
 
-        var content = await fileContentService.GetByFileId(file.Id);
+        var content = (await fileContentRepository.GetByFileIds(new[] {file.Id})).FirstOrDefault();
 
-        file.Content = content;
+        file.Content = content?.Content;
 
         return file;
     }
