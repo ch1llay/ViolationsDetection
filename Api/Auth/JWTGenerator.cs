@@ -15,7 +15,7 @@ public class JWTGenerator
             AuthOptions.ISSUER,
             AuthOptions.AUDIENCE,
             claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(10)),
+            expires: DateTime.UtcNow.Add(TimeSpan.FromDays(1)),
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
 
 
