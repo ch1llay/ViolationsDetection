@@ -1,3 +1,3 @@
-insert into "DbViolation" ("Id", "UserId", "Address", "ViolationType", "EventDate", "CreatedDate", "Comment", "ViolationStatus")
-values (@Id, @UserId, @Address, @ViolationType, @EventDate, @CreatedDate, @Comment, @ViolationStatus@)
-returning "Id", "UserId", "Address", "ViolationType", "EventDate", "CreatedDate", "Comment", "ViolationStatus"
+insert into "DbViolationFile" ("Id", "ViolationId", "FileId")
+values (@Id, @ViolationId, @FileId)
+returning "Id", "ViolationId", "FileId"

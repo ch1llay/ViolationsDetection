@@ -1,3 +1,3 @@
-insert into "DbFile" ("Id", "UserId", "FileContainerId", "Filename", "CreatedDate")
-values (@Id, @UserId, @FileContainerId, @Filename, @CreatedDate)
-returning "Id", "UserId", "FileContainerId", "Filename", "CreatedDate"
+insert into "DbFile" ("Id", "UserId", "Filename", "CreatedDate")
+values (@Id, @UserId, @Filename, @CreatedDate)
+returning "Id", "UserId", "Filename", "CreatedDate"

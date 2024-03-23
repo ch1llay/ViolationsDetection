@@ -8,10 +8,6 @@ public class DbFile
     [PrimaryKey] public Guid Id { get; set; }
 
     public Guid UserId { get; set; }
-
-    [ForeignKey(nameof(DbViolationFile), nameof(DbViolationFile.Id))]
-    public Guid? FileContainerId { get; set; }
-
     public string Filename { get; set; }
     public string ContentType { get; set; }
     public DateTime CreatedDate { get; set; }

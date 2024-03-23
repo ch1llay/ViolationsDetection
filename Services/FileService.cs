@@ -60,14 +60,7 @@ public class FileService(
 
         return res;
     }
-
-    public async Task<List<FileModel>> GetByContainerId(Guid containerId)
-    {
-        var res = (await fileRepository.GetByContainerIds(new List<Guid> {containerId})).MapToList<FileModel>(mapper);
-
-        return res;
-    }
-
+    
     public async Task<FileModel> GetByIdWithContent(Guid id)
     {
         var file = (await fileRepository.GetByIds(new List<Guid> {id})).MapToList<FileModel>(mapper).FirstOrDefault();
@@ -82,12 +75,5 @@ public class FileService(
         file.Content = content?.Content;
 
         return file;
-    }
-
-    public async Task<List<FileModel>> GetByContainersId(List<Guid> containerIds)
-    {
-        var res = (await fileRepository.GetByContainerIds(containerIds)).MapToList<FileModel>(mapper);
-
-        return res;
     }
 }

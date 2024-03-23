@@ -73,17 +73,6 @@ namespace DataAccess.Sql.Files {
         /// <summary>
         ///   Looks up a localized string similar to select *
         ///from &quot;DbFile&quot;
-        ///where &quot;FileContainerId&quot; = any (@fileContainerId).
-        /// </summary>
-        internal static string GetAllByLifeSpheres {
-            get {
-                return ResourceManager.GetString("GetAllByLifeSpheres", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to select *
-        ///from &quot;DbFile&quot;
         ///where &quot;Id&quot; = any (@ids).
         /// </summary>
         internal static string GetByIds {
@@ -93,9 +82,20 @@ namespace DataAccess.Sql.Files {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to insert into &quot;DbFile&quot; (&quot;Id&quot;, &quot;UserId&quot;, &quot;FileContainerId&quot;, &quot;Filename&quot;, &quot;CreatedDate&quot;)
-        ///values (@Id, @UserId, @FileContainerId, @Filename, @CreatedDate)
-        ///returning &quot;Id&quot;, &quot;UserId&quot;, &quot;FileContainerId&quot;, &quot;Filename&quot;, &quot;CreatedDate&quot;.
+        ///   Looks up a localized string similar to select *
+        ///from &quot;DbFile&quot;
+        ///where &quot;UserId&quot; = any (@userIds).
+        /// </summary>
+        internal static string GetByUserIds {
+            get {
+                return ResourceManager.GetString("GetByUserIds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to insert into &quot;DbFile&quot; (&quot;Id&quot;, &quot;UserId&quot;, &quot;Filename&quot;, &quot;CreatedDate&quot;)
+        ///values (@Id, @UserId, @Filename, @CreatedDate)
+        ///returning &quot;Id&quot;, &quot;UserId&quot;, &quot;Filename&quot;, &quot;CreatedDate&quot;.
         /// </summary>
         internal static string Insert {
             get {
@@ -104,9 +104,7 @@ namespace DataAccess.Sql.Files {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to insert into &quot;DbTask&quot; (&quot;Id&quot;, &quot;Title&quot;, &quot;CreatedDate&quot;, &quot;StartExecutionDate&quot;, &quot;DeadlineDate&quot;)
-        ///values (@Id, @Title, @CreatedDate, @StartExecutionDate, @DeadlineDate)
-        ///returning &quot;Id&quot;, &quot;ProjectId&quot;, &quot;Title&quot;, &quot;CreatedDate&quot;, &quot;StartExecutionDate&quot;, &quot;DeadlineDate&quot;.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string Update {
             get {

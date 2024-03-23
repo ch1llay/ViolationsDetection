@@ -29,10 +29,6 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Files.Designer.cs</LastGenOutput>
         </EmbeddedResource>
-        <EmbeddedResource Update="Sql\FileContainers\FileContainers.resx">
-            <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>FileContainers.Designer.cs</LastGenOutput>
-        </EmbeddedResource>
         <EmbeddedResource Update="Sql\Users\Users.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Users.Designer.cs</LastGenOutput>
@@ -49,11 +45,6 @@
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
             <DependentUpon>Files.resx</DependentUpon>
-        </Compile>
-        <Compile Update="Sql\FileContainers\FileContainers.Designer.cs">
-            <DesignTime>True</DesignTime>
-            <AutoGen>True</AutoGen>
-            <DependentUpon>FileContainers.resx</DependentUpon>
         </Compile>
         <Compile Update="Sql\Users\Users.Designer.cs">
             <DesignTime>True</DesignTime>

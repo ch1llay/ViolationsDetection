@@ -147,7 +147,6 @@ public static class WebAppConfigurationExtensions
     {
         services.AddScoped<IFileContentRepository, FileContentRepository>();
         services.AddScoped<IFileRepository, FileRepository>();
-        services.AddScoped<IFileContainerRepository, FileContainerRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IViolationRepository, ViolationRepository>();
     }

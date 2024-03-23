@@ -32,11 +32,6 @@ public class FileRepository(IDataContext dataContext) : IFileRepository
 
     public async Task<IEnumerable<DbFile>> GetByUserIds(List<Guid> userIds)
     {
-        return await dataContext.EnumerableOrEmptyAsync<DbFile>(Files.GetAllByLifeSpheres, new {userIds});
-    }
-
-    public async Task<IEnumerable<DbFile>> GetByContainerIds(List<Guid> containerIds)
-    {
-        return await dataContext.EnumerableOrEmptyAsync<DbFile>(Files.GetAllByLifeSpheres, new {containerIds});
+        return await dataContext.EnumerableOrEmptyAsync<DbFile>(Files.GetByUserIds, new {userIds});
     }
 }
