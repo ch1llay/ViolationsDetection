@@ -12,7 +12,7 @@ public class RecognitionService : IRecognitionService
     public RecognitionService(IConfiguration configuration)
     {
         _configuration = configuration;
-        recognitionServiceUrl = _configuration.GetSection("")[""];
+        recognitionServiceUrl = _configuration.GetSection("Services")["RecognitionServiceUrl"] ?? string.Empty;
     }
 
     public async Task<RecognitionResp?> Recognize(RecognitionReque recognitionReque)
