@@ -61,8 +61,7 @@ namespace DataAccess.Sql.Users {
         
         /// <summary>
         ///   Looks up a localized string similar to select *
-        ///from &quot;DbUser&quot;
-        ///where &quot;Id&quot; in (@ids).
+        ///from &quot;DbUser&quot;.
         /// </summary>
         internal static string GetAll {
             get {
@@ -73,7 +72,7 @@ namespace DataAccess.Sql.Users {
         /// <summary>
         ///   Looks up a localized string similar to select *
         ///from &quot;DbUser&quot;
-        ///where &quot;Id&quot; in (@ids).
+        ///where &quot;Id&quot; = any(@ids).
         /// </summary>
         internal static string GetByIds {
             get {
