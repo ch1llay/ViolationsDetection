@@ -7,10 +7,10 @@ using Services.Models;
 namespace Api.Controllers;
 
 [ApiController]
-[Authorize]
 [Route("files")]
 public class FileController(IFileService fileService) : BaseController
 {
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<Guid>> Add(IFormFile formFile)
     {
@@ -30,12 +30,14 @@ public class FileController(IFileService fileService) : BaseController
         return file.Id;
     }
 
+    [Authorize]
     [HttpGet("by-id/{id}")]
     public async Task<ActionResult<FileModel>> GetById(Guid id)
     {
         return Ok(await fileService.GetById(id));
     }
 
+    [Authorize]
     [HttpDelete]
     public async Task<ActionResult<FileModel>> Delete(Guid id)
     {

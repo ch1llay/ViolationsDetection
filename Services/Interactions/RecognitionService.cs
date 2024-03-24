@@ -1,4 +1,5 @@
-﻿using Common.Extensions;
+﻿using System.Net.Http.Headers;
+using Common.Extensions;
 using Microsoft.Extensions.Configuration;
 using Services.Interactions.Models;
 
@@ -23,8 +24,8 @@ public class RecognitionService : IRecognitionService
             {
                 using (var content = new MultipartFormDataContent())
                 {
-                    content.Add(recognitionReque.Content);
-                    var resp = await httpClient.PostAsync($"{recognitionServiceUrl}/detect", content);
+                    content.Add(recognitionReque.Content, name:"file", fileName:"filename123.jpg");
+                    var resp = await httpClient.PostAsync($"{recognitionServiceUrl}/files", content);
                     var respContent = await resp.Content.ReadAsStringAsync();
 
                     return respContent.FromJson<RecognitionResp>();

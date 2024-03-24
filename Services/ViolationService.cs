@@ -26,7 +26,6 @@ public class ViolationService(
             var recognitionResp = await recognitionService.Recognize(new RecognitionReque
             {
                 Content = new ByteArrayContent(file.Content)
-
             });
 
             if (recognitionResp == null)
