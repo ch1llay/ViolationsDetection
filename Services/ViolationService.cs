@@ -28,7 +28,7 @@ public class ViolationService(
                 Content = new ByteArrayContent(file.Content)
             });
 
-            if (recognitionResp == null)
+            if (recognitionResp?.Content == null)
             {
                 continue;
             }
