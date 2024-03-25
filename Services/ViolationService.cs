@@ -31,20 +31,21 @@ public class ViolationService(
                 continue;
             }
 
-            
-            
+
+            model.CreatedDate = DateTime.Now;
             model.ViolationType = recognitionResp.ViolationTypes?.FirstOrDefault() ?? ViolationType.Incorrect;
             
             if (recognitionResp?.ViolationTypes == null || recognitionResp.ViolationTypes.Count == 0 || model.ViolationType == ViolationType.Incorrect)
             {
                 model.ViolationStatus = ViolationStatus.Uncommitted;
+                recognitionFileIds.Add(fileLink);
             }
             else
             {
                 model.ViolationStatus = ViolationStatus.Committed;
+                recognitionFileIds.Add(Guid.Parse(recognitionResp.FileLink));
             }
             
-            recognitionFileIds.Add(Guid.Parse(recognitionResp.FileLink));
         }
 
             

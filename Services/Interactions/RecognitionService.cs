@@ -25,7 +25,9 @@ public class RecognitionService : IRecognitionService
             {
                 using (var content = new MultipartFormDataContent())
                 {
-                    content.Add(new ByteArrayContent(fileModel.Content), name:"file", fileName:fileModel.Filename);
+                    var fileContent = new ByteArrayContent(fileModel.Content);
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(fileModel.ContentType);
+                    content.Add(fileContent, name:"file", fileName:fileModel.Filename);
                     var resp = await httpClient.PostAsync($"{recognitionServiceUrl}/detect?token={token}", content);
                     var respContent = await resp.Content.ReadAsStringAsync();
 
