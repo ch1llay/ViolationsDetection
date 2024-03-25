@@ -2,6 +2,6 @@
 
 public enum ViolationStatus
 {
-    Committed,
-    Uncommitted
+    Uncommitted,
+    Committed
 }

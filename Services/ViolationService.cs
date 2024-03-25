@@ -39,6 +39,10 @@ public class ViolationService(
             {
                 model.ViolationStatus = ViolationStatus.Uncommitted;
             }
+            else
+            {
+                model.ViolationStatus = ViolationStatus.Committed;
+            }
             
             recognitionFileIds.Add(Guid.Parse(recognitionResp.FileLink));
         }
