@@ -96,7 +96,7 @@ public class ViolationService(
     public async Task<List<Violation>> GetByIds(IEnumerable<Guid> ids)
     {
         var res = (await violationRepository.GetByIds(ids)).MapToList<Violation>(mapper);
-        await res.GetFiles(violationRepository);
+        await res.GetFiles(violationRepository, fileService);
 
         return res;
     }
@@ -118,7 +118,7 @@ public class ViolationService(
     public async Task<List<Violation>> GetByUserId(Guid userId)
     {
         var res = (await violationRepository.GetByUserId(new List<Guid> {userId})).MapToList<Violation>(mapper);
-        await res.GetFiles(violationRepository);
+        await res.GetFiles(violationRepository, fileService);
 
         return res;
     }
@@ -140,15 +140,30 @@ public static class ViolationExtensions
     }
 
     public static async Task<List<Violation>> GetFiles(this List<Violation> violations,
-        IViolationRepository violationRepository)
+        IViolationRepository violationRepository, IFileService fileService)
     {
         var violationIds = violations.Select(f => f.Id).ToList();
-        var fileLinks = await violationRepository.GetViolationFilesByViolationIds(violationIds);
-        var fileLinksByViolationId = fileLinks
+        var violationFilesByViolationIds = await violationRepository.GetViolationFilesByViolationIds(violationIds);
+
+        if (!violationFilesByViolationIds.Any())
+        {
+            return violations;
+        }
+        
+        var fileLinksByViolationId = violationFilesByViolationIds
             .GroupBy(f => f.ViolationId)
             .ToDictionary(t => t.Key, t => t.Select(f => f.FileId).ToList());
 
-        violations.ForEach(v => v.FileLinks = fileLinksByViolationId.GetValueOrDefault(v.Id) ?? new List<Guid>());
+        var fileIds = fileLinksByViolationId.SelectMany(v => v.Value).ToList();
+        var fileModels = await fileService.GetByIds(fileIds);
+        var fileModelsGroupById = fileModels.GroupBy(f => f.Id).ToDictionary(t => t.Key, t => t.ToList());
+        
+        violations.ForEach(v =>
+        {
+            var l = fileLinksByViolationId.GetValueOrDefault(v.Id) ?? new List<Guid>();
+            v.FileLinks = l;
+            v.ContentType = fileModelsGroupById.GetValueOrDefault(l.FirstOrDefault())?.FirstOrDefault()?.ContentType ?? "image";
+        });
 
         return violations;
     }
