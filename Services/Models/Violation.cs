@@ -14,4 +14,5 @@ public class Violation
     public string Comment { get; set; }
     public ViolationStatus ViolationStatus { get; set; }
     public List<Guid> FileLinks { get; set; } = new List<Guid>();
+    public string ContentType { get; set; }
 }

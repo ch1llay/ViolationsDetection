@@ -26,14 +26,25 @@ public class ViolationService(
 
             var recognitionResp = await recognitionService.Recognize(file, auth);
 
-            if (string.IsNullOrEmpty(recognitionResp.FileLink))
+            if (string.IsNullOrEmpty(recognitionResp.Base64Content))
             {
                 continue;
             }
 
+            var detectFile = await fileService.Add(new FileModel
+            {
+                Filename = $"detect_{file.Filename}",
+                ContentType = file.ContentType,
+                CreatedDate = DateTime.Now,
+                UserId = file.UserId,
+                Content = Convert.FromBase64String(recognitionResp.Base64Content)
+            });
+
 
             model.CreatedDate = DateTime.Now;
-            model.ViolationType = recognitionResp.ViolationTypes?.FirstOrDefault() ?? ViolationType.Incorrect;
+            var types = recognitionResp.ViolationTypes;
+            var mostType = types.GroupBy(t => t).MaxBy(t => t.Count())?.Key;
+            model.ViolationType = mostType ?? ViolationType.Incorrect;
             
             if (recognitionResp?.ViolationTypes == null || recognitionResp.ViolationTypes.Count == 0 || model.ViolationType == ViolationType.Incorrect)
             {
@@ -43,7 +54,7 @@ public class ViolationService(
             else
             {
                 model.ViolationStatus = ViolationStatus.Committed;
-                recognitionFileIds.Add(Guid.Parse(recognitionResp.FileLink));
+                recognitionFileIds.Add(detectFile.Id);
             }
             
         }
@@ -99,7 +110,7 @@ public class ViolationService(
             return null;
         }
         
-        await res.GetFiles(violationRepository);
+        await res.GetFiles(violationRepository, fileService);
         
         return res;
     }
@@ -116,10 +127,13 @@ public class ViolationService(
 public static class ViolationExtensions
 {
     public static async Task<Violation> GetFiles(this Violation violation,
-        IViolationRepository violationRepository
+        IViolationRepository violationRepository, IFileService fileService
         )
     {
-        var fileLinks = (await violationRepository.GetViolationFilesByViolationIds( new List<Guid> {violation.Id})).Select(f => f.FileId).ToList();
+        var fileLinks = (await violationRepository.GetViolationFilesByViolationIds(new List<Guid> {violation.Id})).Select(f => f.FileId).ToList();
+        var fileModel = (await fileService.GetByIds(fileLinks)).FirstOrDefault();
+        violation.ContentType = fileModel?.ContentType;
+        
         violation.FileLinks = fileLinks;
 
         return violation;
