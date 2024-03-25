@@ -2,6 +2,7 @@
 using Common.Extensions;
 using Microsoft.Extensions.Configuration;
 using Services.Interactions.Models;
+using Services.Models;
 
 namespace Services.Interactions;
 
@@ -16,7 +17,7 @@ public class RecognitionService : IRecognitionService
         recognitionServiceUrl = _configuration.GetSection("Services")["RecognitionServiceUrl"] ?? string.Empty;
     }
 
-    public async Task<RecognitionResp?> Recognize(RecognitionReque recognitionReque)
+    public async Task<RecognitionResp?> Recognize(FileModel fileModel, string token)
     {
         try
         {
@@ -24,8 +25,8 @@ public class RecognitionService : IRecognitionService
             {
                 using (var content = new MultipartFormDataContent())
                 {
-                    content.Add(recognitionReque.Content, name:"file", fileName:"filename123.jpg");
-                    var resp = await httpClient.PostAsync($"{recognitionServiceUrl}/files", content);
+                    content.Add(new ByteArrayContent(fileModel.Content), name:"file", fileName:fileModel.Filename);
+                    var resp = await httpClient.PostAsync($"{recognitionServiceUrl}/detect?token={token}", content);
                     var respContent = await resp.Content.ReadAsStringAsync();
 
                     return respContent.FromJson<RecognitionResp>();
@@ -40,3 +41,5 @@ public class RecognitionService : IRecognitionService
         }
     }
 }
+
+//ssh -i C:/users/smartway.today/.ssh/id_rsa -p 36921 hack@inkve.dedyn.io

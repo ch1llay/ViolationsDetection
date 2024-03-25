@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Common.Enums;
 using Common.Extensions;
 using DataAccess.Entities;
 using DataAccess.Repositories.Interfaces;
@@ -16,45 +17,39 @@ public class ViolationService(
     IFileService fileService
 ) : IViolationService
 {
-    public async Task<Violation> Add(Violation model)
+    public async Task<Violation> AddWithToken(Violation model, string auth)
     {
         var recognitionFileIds = new List<Guid>();
         foreach (var fileLink in model.FileLinks)
         {
             var file = await fileService.GetByIdWithContent(fileLink);
 
-            var recognitionResp = await recognitionService.Recognize(new RecognitionReque
-            {
-                Content = new ByteArrayContent(file.Content)
-            });
+            var recognitionResp = await recognitionService.Recognize(file, auth);
 
-            if (recognitionResp?.Content == null)
+            if (string.IsNullOrEmpty(recognitionResp.FileLink))
             {
                 continue;
             }
-            
-            model.ViolationType = recognitionResp.ViolationType;
 
-            var detectFile = await fileService.Add(new FileModel
-            {
-                Filename = $"Detect {file.Filename}",
-                CreatedDate = DateTime.Now,
-                ContentType = file.ContentType,
-                Content = await recognitionResp.Content.ReadAsByteArrayAsync()
-            });
             
-            recognitionFileIds.Add(detectFile.Id);
+            
+            model.ViolationType = recognitionResp.ViolationTypes?.FirstOrDefault() ?? ViolationType.Incorrect;
+            
+            if (recognitionResp?.ViolationTypes == null || recognitionResp.ViolationTypes.Count == 0 || model.ViolationType == ViolationType.Incorrect)
+            {
+                model.ViolationStatus = ViolationStatus.Uncommitted;
+            }
+            
+            recognitionFileIds.Add(Guid.Parse(recognitionResp.FileLink));
         }
 
             
         var violation = (await violationRepository.Add(model.Map<DbViolation>(mapper))).Map<Violation>(mapper);
-
-       
+        
         await violationRepository.AddViolationFiles(model.FileLinks.Select(f => new DbViolationFile
         {
             ViolationId = violation.Id,
             FileId = f,
-            WithDetect = true
         }).ToList());
         
         await violationRepository.AddViolationFiles(recognitionFileIds.Select(f => new DbViolationFile
@@ -65,6 +60,11 @@ public class ViolationService(
         }).ToList());
         
         return await GetById(violation.Id);
+    }
+
+    public Task<Violation> Add(Violation model)
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<Violation> Update(Violation model)

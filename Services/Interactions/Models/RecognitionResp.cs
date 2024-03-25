@@ -4,6 +4,6 @@ namespace Services.Interactions.Models;
 
 public class RecognitionResp
 {
-    public ViolationType ViolationType { get; set; }
-    public ByteArrayContent Content { get; set; }
+    public List<ViolationType> ViolationTypes { get; set; } = new List<ViolationType>();
+    public string FileLink { get; set; } 
 }

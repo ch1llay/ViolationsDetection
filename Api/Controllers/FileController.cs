@@ -29,6 +29,7 @@ public class FileController(IFileService fileService) : BaseController
 
         return file.Id;
     }
+    
 
     [Authorize]
     [HttpGet("by-id/{id}")]

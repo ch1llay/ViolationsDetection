@@ -16,7 +16,7 @@ public class ViolationController(IViolationService violationService) : BaseContr
     {
         model.UserId = UserId;
         
-        return Ok(await violationService.Add(model));
+        return Ok(await violationService.AddWithToken(model, Token));
     }
 
     [HttpGet("by-id")]
