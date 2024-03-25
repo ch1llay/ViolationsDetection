@@ -26,7 +26,7 @@ public class ViolationService(
 
             var recognitionResp = await recognitionService.Recognize(file, auth);
 
-            if (string.IsNullOrEmpty(recognitionResp.Base64Content))
+            if (string.IsNullOrEmpty(recognitionResp?.Base64Content))
             {
                 continue;
             }

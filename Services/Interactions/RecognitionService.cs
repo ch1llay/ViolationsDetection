@@ -45,3 +45,6 @@ public class RecognitionService : IRecognitionService
 }
 
 //ssh -i C:/users/smartway.today/.ssh/id_rsa -p 36921 hack@inkve.dedyn.io
+
+// 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
+// 1956955
